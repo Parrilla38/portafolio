@@ -272,6 +272,7 @@ section{position:relative;padding:100px 0}
 .navegador.dentro .carga{animation:carga 1.2s var(--salida) forwards}
 @keyframes carga{0%{width:0;opacity:1}90%{width:100%;opacity:1}100%{width:100%;opacity:0}}
 .navegador .pantalla{position:relative;height:var(--alto);overflow:hidden;background:#f6f6f2}
+.navegador .pantalla picture{display:block}
 .navegador .pantalla img{width:100%;height:auto;transform:translateY(0);will-change:transform}
 .navegador.dentro .pantalla img.recorre{animation:recorrer var(--dur,26s) ease-in-out 1.2s infinite alternate}
 .navegador:hover .pantalla img.recorre{animation-play-state:paused}
@@ -355,11 +356,14 @@ section{position:relative;padding:100px 0}
 @keyframes onda{50%{height:100%}}
 .reloj .c2{opacity:0}
 .escena:not([data-paso="0"]) .reloj .c1{opacity:0}
-.escena:not([data-paso="0"]) .reloj .c2{opacity:1}
+.escena[data-paso="1"] .reloj .c2{opacity:1}
+.reloj .c3{opacity:0}
+.escena[data-paso="2"] .reloj .c3,.escena[data-paso="3"] .reloj .c3{opacity:1}
 .enlace-r{position:relative;width:46px;height:2px;background:var(--linea-fuerte);flex:none}
 .enlace-r::after{content:"";position:absolute;left:0;top:-2px;width:8px;height:6px;background:var(--ac);opacity:0}
 .escena[data-paso="2"] .enlace-r::after{animation:viaja .8s linear infinite;opacity:1}
 @keyframes viaja{from{left:0}to{left:calc(100% - 8px)}}
+@keyframes viaja-v{from{top:0}to{top:calc(100% - 8px)}}
 .iphone{position:relative;flex:none;width:220px;height:440px;border-radius:38px;background:#000;border:7px solid #1d231e;box-shadow:0 30px 60px -30px rgba(0,0,0,.9)}
 .iphone .isla{position:absolute;top:10px;left:50%;translate:-50% 0;width:70px;height:20px;border-radius:12px;background:#000;border:1px solid #1d231e;z-index:3}
 .iphone .app{position:absolute;inset:5px;border-radius:30px;background:var(--negro-2);overflow:hidden;padding:40px 12px 60px;display:grid;align-content:start;gap:9px}
@@ -369,7 +373,8 @@ section{position:relative;padding:100px 0}
 .tarjeta-app{border:1px solid var(--linea);padding:9px 10px;display:grid;gap:6px;font-size:12px;line-height:1.35;transition:border-color .4s,background .4s,opacity .4s,transform .5s var(--muelle)}
 .tarjeta-app .k{font:700 9.5px/1 var(--txt);letter-spacing:.12em;text-transform:uppercase;color:var(--tenue)}
 .tarjeta-app .k b{color:var(--ac)}
-.tarjeta-app.resumen{background:rgba(var(--ac-rgb),.08);border-color:rgba(var(--ac-rgb),.35)}
+.tarjeta-app.resumen{background:rgba(var(--ac-rgb),.08);border-color:rgba(var(--ac-rgb),.35);max-height:130px;overflow:hidden;transition:max-height .5s var(--salida),opacity .3s,padding .5s var(--salida),margin .5s var(--salida),border-width .5s}
+.escena[data-paso="3"] .tarjeta-app.resumen{max-height:0;opacity:0;padding-block:0;border-width:0;margin-top:-9px}
 .tarjeta-app .bruto{font:400 11px/1.45 var(--mono);color:var(--crema);min-height:32px}
 .tarjeta-app.nota{opacity:.35}
 .escena[data-paso="2"] .tarjeta-app.nota,.escena[data-paso="3"] .tarjeta-app.nota{opacity:1;border-color:var(--ac-2)}
@@ -564,14 +569,19 @@ footer a:hover{color:var(--ac)}
   .redes{grid-template-columns:repeat(3,1fr)}
   section{padding:130px 0}
 }
+@media (max-width:600px){
+  .navegador:not(.demo-plan){--alto:440px}
+}
 @media (max-width:460px){
   .explorado .pista{display:none}
-  .escena{gap:10px;padding-inline:8px}
-  .reloj{width:112px;height:112px;border-width:5px}
+  .escena{flex-direction:column;gap:14px;padding:58px 12px 26px;min-height:0}
+  .reloj{width:118px;height:118px;border-width:5px}
   .reloj .hora{font-size:20px}
   .reloj .cara{padding:12px}
-  .iphone{width:184px;height:400px}
-  .enlace-r{width:14px}
+  .iphone{width:min(250px,78vw);height:430px}
+  .enlace-r{width:2px;height:22px}
+  .enlace-r::after{width:6px;height:8px;left:-2px;top:0}
+  .escena[data-paso="2"] .enlace-r::after{animation:viaja-v .8s linear infinite}
   .cerebro canvas{height:380px}
 }
 
@@ -742,7 +752,7 @@ footer a:hover{color:var(--ac)}
         <a class="navegador inclina" href="https://coposita.es" target="_blank" rel="noopener" aria-label="Abrir coposita.es">
           <div class="barra-n"><span class="puntos"><i></i><i></i><i></i></span><span class="url"><svg viewBox="0 0 24 24" fill="none" stroke-width="2.4"><rect x="5" y="11" width="14" height="10"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>coposita.es</span></div>
           <span class="carga"></span>
-          <div class="pantalla"><img class="recorre" src="assets/web-coposita-pc.jpg" alt="Portada de coposita.es" loading="lazy"></div>
+          <div class="pantalla"><picture><source media="(max-width:600px)" srcset="assets/web-coposita-movil.jpg"><img class="recorre" src="assets/web-coposita-pc.jpg" alt="Portada de coposita.es" loading="lazy"></picture></div>
           <span class="pausa">En pausa</span>
         </a>
       </article>
@@ -757,7 +767,7 @@ footer a:hover{color:var(--ac)}
         <a class="navegador inclina" href="https://copositor.es" target="_blank" rel="noopener" aria-label="Abrir copositor.es" style="--dur:30s">
           <div class="barra-n"><span class="puntos"><i></i><i></i><i></i></span><span class="url"><svg viewBox="0 0 24 24" fill="none" stroke-width="2.4"><rect x="5" y="11" width="14" height="10"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>copositor.es</span></div>
           <span class="carga"></span>
-          <div class="pantalla"><img class="recorre" src="assets/web-copositor-pc.jpg" alt="Portada de copositor.es" loading="lazy"></div>
+          <div class="pantalla"><picture><source media="(max-width:600px)" srcset="assets/web-copositor-movil.jpg"><img class="recorre" src="assets/web-copositor-pc.jpg" alt="Portada de copositor.es" loading="lazy"></picture></div>
           <span class="pausa">En pausa</span>
         </a>
       </article>
@@ -852,6 +862,7 @@ footer a:hover{color:var(--ac)}
         <span class="ejemplo">Ejemplo</span>
         <div class="reloj" id="reloj">
           <div class="cara c1"><span class="hora">7:30</span><span class="linea-r">Hoy: <b>3 cosas</b></span><span class="linea-r">2 vencen esta semana</span></div>
+          <div class="cara c3"><span class="hora" style="color:var(--ac)">✓</span><span class="linea-r"><b>Enviada</b></span><span class="linea-r">al iPhone</span></div>
           <div class="cara c2"><span class="linea-r"><b>Grabando</b></span>
             <span class="ondas-r"><i style="--i:0"></i><i style="--i:1"></i><i style="--i:2"></i><i style="--i:3"></i><i style="--i:4"></i><i style="--i:5"></i><i style="--i:6"></i></span>
             <span class="grabar"><i></i></span></div>
