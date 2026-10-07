@@ -311,8 +311,8 @@ section{position:relative;padding:100px 0}
 .navegador:hover .pausa{opacity:.9}
 
 /* Móvil con la web real (Valdeza) */
-.telefono{--alto:520px;position:relative;display:block;justify-self:center;width:min(270px,78vw);border:1px solid var(--linea-fuerte);border-radius:36px;padding:10px;background:var(--negro-2);transform:perspective(1200px) rotateY(var(--ry,-8deg)) rotateX(var(--rx,0deg));transition:transform .5s var(--salida);box-shadow:20px 30px 60px -30px rgba(0,0,0,.9)}
-.telefono .pantalla{height:var(--alto);overflow:hidden;border-radius:27px;background:#0b0f0d;position:relative}
+.telefono{position:relative;display:block;justify-self:center;width:min(270px,78vw);border:1px solid var(--linea-fuerte);border-radius:36px;padding:10px;background:var(--negro-2);transform:perspective(1200px) rotateY(var(--ry,0deg)) rotateX(var(--rx,0deg));transition:transform .5s var(--salida);box-shadow:0 30px 60px -30px rgba(0,0,0,.9)}
+.telefono .pantalla{--alto:calc(min(270px,78vw) * 2.05 - 20px);height:var(--alto);overflow:hidden;border-radius:27px;background:#0b0f0d;position:relative}
 .telefono .pantalla img{width:100%}
 .telefono.dentro .pantalla img{animation:recorrer 30s ease-in-out 1s infinite alternate}
 .telefono:hover .pantalla img{animation-play-state:paused}
@@ -403,11 +403,11 @@ section{position:relative;padding:100px 0}
 .tarjeta-app{border:1px solid var(--linea);padding:9px 10px;display:grid;gap:6px;font-size:12px;line-height:1.35;transition:border-color .4s,background .4s,opacity .4s,transform .5s var(--muelle)}
 .tarjeta-app .k{font:700 9.5px/1 var(--txt);letter-spacing:.12em;text-transform:uppercase;color:var(--tenue)}
 .tarjeta-app .k b{color:var(--ac)}
-.tarjeta-app.resumen{background:rgba(var(--ac-rgb),.08);border-color:rgba(var(--ac-rgb),.35);max-height:130px;overflow:hidden;transition:max-height .5s var(--salida),opacity .3s,padding .5s var(--salida),margin .5s var(--salida),border-width .5s}
-.escena[data-paso="3"] .tarjeta-app.resumen{max-height:0;opacity:0;padding-block:0;border-width:0;margin-top:-9px}
+.tarjeta-app.resumen{background:rgba(var(--ac-rgb),.08);border-color:rgba(var(--ac-rgb),.35);}
 .tarjeta-app .bruto{font:400 11px/1.45 var(--mono);color:var(--crema);min-height:32px}
 .tarjeta-app.nota{opacity:.35}
-.escena[data-paso="2"] .tarjeta-app.nota,.escena[data-paso="3"] .tarjeta-app.nota{opacity:1;border-color:var(--ac-2)}
+.escena[data-paso="2"] .tarjeta-app.nota{opacity:1;border-color:var(--ac-2)}
+.escena[data-paso="3"] .tarjeta-app.nota{display:none}
 .tarjeta-app.orden{opacity:0;transform:translateY(10px)}
 .escena[data-paso="3"] .tarjeta-app.orden{opacity:1;transform:none;border-color:var(--ac)}
 .tarjeta-app.orden strong{font:800 14px/1.1 var(--tit);text-transform:uppercase}
