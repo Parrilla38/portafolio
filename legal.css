@@ -1,0 +1,24 @@
+/* Estilo de las páginas sencillas (aviso legal, privacidad, 404) con la marca de @parrilla_opos */
+@font-face{font-family:"Bricolage Grotesque";font-weight:200 800;font-display:swap;src:url(/assets/fuentes/bricolage-latin.woff2) format("woff2")}
+@font-face{font-family:"Schibsted Grotesk";font-weight:400 900;font-display:swap;src:url(/assets/fuentes/schibsted-latin.woff2) format("woff2")}
+:root{--verde:#00C853;--amarillo:#FFD60A;--negro:#0A0D0B;--crema:#FAF7E6;--tenue:#A9AE9E;--linea:rgba(250,247,230,.12)}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--negro);color:var(--crema);font:400 17px/1.65 "Schibsted Grotesk",system-ui,sans-serif;
+  background-image:radial-gradient(rgba(250,247,230,.08) 1px,transparent 1.4px);background-size:28px 28px}
+a{color:var(--verde)}
+a:focus-visible{outline:2px solid var(--amarillo);outline-offset:3px}
+.cabeza{border-bottom:1px solid var(--linea);background:rgba(10,13,11,.85)}
+.cabeza div,.texto{width:min(760px,100% - 40px);margin-inline:auto}
+.cabeza div{display:flex;justify-content:space-between;align-items:center;height:64px}
+.marca{font:800 19px/1 "Bricolage Grotesque",sans-serif;color:var(--crema);text-decoration:none}
+.marca span{color:var(--verde)}
+.volver{font:700 14px/1 "Schibsted Grotesk",sans-serif}
+.texto{padding:56px 0 90px}
+.hud{font:700 12px/1.2 "Schibsted Grotesk",sans-serif;letter-spacing:.14em;text-transform:uppercase;color:var(--verde)}
+h1{font:800 clamp(40px,9vw,68px)/.95 "Bricolage Grotesque",sans-serif;letter-spacing:-.025em;text-transform:uppercase;margin:14px 0 22px}
+h2{font:800 22px/1.15 "Bricolage Grotesque",sans-serif;text-transform:uppercase;margin:38px 0 10px}
+p,li{color:var(--tenue)}
+p+p{margin-top:12px}
+ul{padding-left:20px;margin-top:10px;display:grid;gap:6px}
+b{color:var(--crema);font-weight:500}
+.fecha{margin-top:46px;padding-top:18px;border-top:1px solid var(--linea);font-size:14px}
