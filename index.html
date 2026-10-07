@@ -1074,11 +1074,11 @@ footer a:hover{color:var(--ac)}
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6"><path d="M7 17L17 7M9 7h8v8"/></svg></a>
           <a class="boton fantasma" data-enviar href="https://www.tiktok.com/@parrilla_opos" target="_blank" rel="noopener">TikTok</a>
           <a class="boton fantasma" data-enviar href="https://x.com/parrilla_opos" target="_blank" rel="noopener">X</a>
-          <a class="boton fantasma" data-enviar data-correo href="mailto:parrilla38g@gmail.com">Correo</a>
+          <a class="boton fantasma" data-enviar data-correo href="mailto:parrilla38apps@gmail.com">Correo</a>
           <span class="copiado" id="copiado">Copiado · pégalo en el chat</span>
         </div>
       </div>
-      <p class="correo-linea">¿Prefieres correo? <a data-enviar data-correo href="mailto:parrilla38g@gmail.com">parrilla38g@gmail.com</a></p>
+      <p class="correo-linea">¿Prefieres correo? <a data-enviar data-correo href="mailto:parrilla38apps@gmail.com">parrilla38apps@gmail.com</a></p>
     </div>
 
     <div class="promesa">
@@ -1092,7 +1092,7 @@ footer a:hover{color:var(--ac)}
 
 <footer>
   <div class="envoltorio">
-    <span>Jesús · @parrilla_opos · <a href="mailto:parrilla38g@gmail.com">parrilla38g@gmail.com</a></span>
+    <span>Jesús · @parrilla_opos · <a href="mailto:parrilla38apps@gmail.com">parrilla38apps@gmail.com</a></span>
     <span><a href="/aviso-legal">Aviso legal</a> · <a href="/privacidad">Privacidad</a></span>
   </div>
 </footer>
@@ -1491,7 +1491,7 @@ addEventListener('scroll', alHacerScroll, { passive: true }); alHacerScroll();
   idea.addEventListener('input', componer);
   $$('[data-enviar]').forEach((a) => a.addEventListener('click', () => {
     const txt = componer();
-    if (a.dataset.correo) { a.href = 'mailto:parrilla38g@gmail.com?subject=' + encodeURIComponent('Vengo de tu web: ' + (tipo || 'una idea')) + (txt ? '&body=' + encodeURIComponent(txt) : ''); return; }
+    if (a.dataset.correo) { a.href = 'mailto:parrilla38apps@gmail.com?subject=' + encodeURIComponent('Vengo de tu web: ' + (tipo || 'una idea')) + (txt ? '&body=' + encodeURIComponent(txt) : ''); return; }
     if (!txt || !navigator.clipboard) return;
     navigator.clipboard.writeText(txt).then(() => { copiado.classList.add('ver'); setTimeout(() => copiado.classList.remove('ver'), 3000); }).catch(() => {});
   }));
