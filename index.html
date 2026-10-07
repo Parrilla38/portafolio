@@ -1,0 +1,1465 @@
+<!doctype html>
+<html lang="es" data-acento="verde">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Jesús · @parrilla_opos · IA, oposiciones y apps</title>
+<meta name="description" content="Jesús (@parrilla_opos): estudio con IA, construyo webs, apps y herramientas para opositores y automatizo lo que se repite.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,800&family=Schibsted+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+/* ============================================================
+   Maqueta v3 · futurista. Paleta de @parrilla_opos (Perfil Instagram/CLAUDE.md:92-104).
+   Sin morados, azules ni degradados de «IA»: el verde hace de fósforo, el amarillo de señal.
+   ============================================================ */
+:root{
+  --verde:#00C853; --amarillo:#FFD60A; --negro:#0A0D0B; --negro-2:#101511; --negro-3:#18221B;
+  --crema:#FAF7E6; --verde-osc:#0B6B34; --rojo:#FF3B30;
+  --linea:rgba(250,247,230,.10); --linea-fuerte:rgba(250,247,230,.22); --tenue:#9DA394;
+  --tit:"Bricolage Grotesque", system-ui, sans-serif;
+  --txt:"Schibsted Grotesk", system-ui, sans-serif;
+  --mono:ui-monospace, "Cascadia Mono", Consolas, monospace;
+  --salida:cubic-bezier(.22,1,.36,1); --muelle:cubic-bezier(.34,1.4,.64,1);
+}
+[data-acento="verde"]{ --ac:var(--verde); --ac-2:var(--amarillo); --ac-rgb:0,200,83 }
+[data-acento="amarillo"]{ --ac:var(--amarillo); --ac-2:var(--verde); --ac-rgb:255,214,10 }
+
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%;scroll-padding-top:80px}
+body{background:var(--negro);color:var(--crema);font:400 17px/1.55 var(--txt);overflow-x:hidden}
+img,video,canvas{display:block;max-width:100%}
+a{color:inherit;text-decoration:none}
+button,input{font:inherit;color:inherit}
+::selection{background:var(--ac);color:var(--negro)}
+:focus-visible{outline:2px solid var(--ac-2);outline-offset:3px}
+.envoltorio{width:min(1200px,100% - 40px);margin-inline:auto}
+
+/* Fondo: rejilla de puntos + luz que sigue al ratón */
+.fondo{position:fixed;inset:0;z-index:0;pointer-events:none;background-image:radial-gradient(rgba(250,247,230,.09) 1px,transparent 1.4px);background-size:28px 28px}
+.foco{position:fixed;inset:0;z-index:0;pointer-events:none;background:radial-gradient(520px circle at var(--mx,50%) var(--my,30%),rgba(var(--ac-rgb),.06),transparent 70%)}
+main,header,footer{position:relative;z-index:1}
+
+/* Tipos y piezas */
+.tit{font-family:var(--tit);font-weight:800;line-height:.95;letter-spacing:-.025em;text-transform:uppercase}
+.hud{font:700 12px/1.2 var(--txt);letter-spacing:.14em;text-transform:uppercase;color:var(--tenue)}
+.hud b{color:var(--ac);font-weight:700}
+.led{display:inline-block;width:8px;height:8px;border-radius:50%;background:var(--ac);animation:led 2s infinite;vertical-align:middle;margin-right:8px}
+@keyframes led{0%{box-shadow:0 0 0 0 rgba(var(--ac-rgb),.6)}70%{box-shadow:0 0 0 8px rgba(var(--ac-rgb),0)}100%{box-shadow:0 0 0 0 rgba(var(--ac-rgb),0)}}
+.marco{position:relative;border:1px solid var(--linea-fuerte);background:rgba(16,21,17,.78);backdrop-filter:blur(3px)}
+.marco::before,.marco::after{content:"";position:absolute;width:16px;height:16px;border-color:var(--ac);border-style:solid;transition:width .4s var(--salida),height .4s var(--salida);pointer-events:none;z-index:2}
+.marco::before{top:-1px;left:-1px;border-width:2px 0 0 2px}
+.marco::after{bottom:-1px;right:-1px;border-width:0 2px 2px 0}
+.marco:hover::before,.marco:hover::after{width:34px;height:34px}
+.boton{position:relative;display:inline-flex;align-items:center;justify-content:center;gap:12px;font:800 16px/1 var(--tit);text-transform:uppercase;letter-spacing:.02em;
+  padding:17px 22px;background:var(--ac);color:var(--negro);border:0;cursor:pointer;overflow:hidden;
+  clip-path:polygon(0 0,calc(100% - 12px) 0,100% 12px,100% 100%,12px 100%,0 calc(100% - 12px));transition:transform .3s var(--muelle)}
+.boton::after{content:"";position:absolute;inset:0;background:linear-gradient(100deg,transparent 30%,rgba(255,255,255,.55) 50%,transparent 70%);transform:translateX(-120%)}
+.boton:hover{transform:translateY(-2px)}
+.boton:hover::after{transform:translateX(120%);transition:transform .6s var(--salida)}
+.boton svg{width:18px;height:18px;flex:none;transition:transform .3s var(--muelle)}
+.boton:hover svg{transform:translateX(4px)}
+.boton.fantasma{background:transparent;color:var(--crema);box-shadow:inset 0 0 0 1px var(--linea-fuerte)}
+.boton.fantasma:hover{box-shadow:inset 0 0 0 1px var(--ac);color:var(--ac)}
+.boton.peq{padding:13px 16px;font-size:14px}
+.etq{display:inline-block;font:700 11px/1 var(--txt);letter-spacing:.12em;text-transform:uppercase;padding:7px 9px;border:1px solid var(--linea-fuerte);color:var(--crema);white-space:nowrap}
+.etq.obra{border-color:rgba(255,214,10,.5);color:var(--amarillo)}
+.etq.vivo{border-color:rgba(0,200,83,.6);color:var(--verde)}
+.etq.obra::before,.etq.vivo::before{content:"";display:inline-block;width:6px;height:6px;margin-right:7px;background:currentColor;vertical-align:1px;animation:parpadeo 1.6s steps(1) infinite}
+.etq.lleno{background:var(--ac-2);color:var(--negro);border-color:var(--ac-2)}
+@keyframes parpadeo{50%{opacity:0}}
+.pila{display:flex;flex-wrap:wrap;gap:6px}
+.pila span{font:500 12.5px/1 var(--txt);color:var(--tenue);padding:7px 9px;background:var(--negro-3)}
+.ejemplo{font:700 10px/1 var(--txt);letter-spacing:.12em;color:var(--negro);background:var(--ac-2);padding:5px 7px;text-transform:uppercase}
+
+/* Aparición */
+.aparece{opacity:0;transform:translateY(24px);transition:opacity .6s var(--salida),transform .8s var(--salida);transition-delay:calc(var(--i,0) * 80ms)}
+.aparece.dentro{opacity:1;transform:none}
+
+/* ===== Arranque ===== */
+.arranque{position:fixed;inset:0;z-index:100;background:var(--negro);display:grid;place-items:center;transition:opacity .5s var(--salida),visibility .5s}
+.arranque.fuera{opacity:0;visibility:hidden}
+.arranque .caja{width:min(420px,86vw);font:500 14px/1.9 var(--mono);color:var(--tenue)}
+.arranque .caja p{opacity:0;animation:aparecer .2s forwards}
+.arranque .caja p b{color:var(--ac);font-weight:500}
+.arranque .barra{height:3px;background:var(--negro-3);margin-top:16px;overflow:hidden}
+.arranque .barra i{display:block;height:100%;width:0;background:var(--ac);animation:cargar 1.1s var(--salida) .15s forwards}
+@keyframes cargar{to{width:100%}}
+@keyframes aparecer{to{opacity:1}}
+
+/* ===== Navegación con contador de exploración ===== */
+.nav{position:fixed;top:0;left:0;right:0;z-index:50;border-bottom:1px solid var(--linea);background:rgba(10,13,11,.8);backdrop-filter:blur(10px)}
+.nav .envoltorio{display:flex;align-items:center;justify-content:space-between;gap:14px;height:64px}
+.marca{font:800 19px/1 var(--tit);letter-spacing:-.01em;white-space:nowrap}
+.marca span{color:var(--ac)}
+.nav-enlaces{display:none;gap:24px}
+.nav-enlaces a{font:500 14px/1 var(--txt);color:var(--tenue);transition:color .2s;position:relative}
+.nav-enlaces a::after{content:"";position:absolute;left:0;right:0;bottom:-8px;height:1px;background:var(--ac);transform:scaleX(0);transition:transform .3s var(--salida)}
+.nav-enlaces a:hover,.nav-enlaces a.activo{color:var(--crema)}
+.nav-enlaces a.activo::after,.nav-enlaces a:hover::after{transform:scaleX(1)}
+.explorado{display:flex;align-items:center;gap:10px;font:700 11px/1 var(--txt);letter-spacing:.12em;text-transform:uppercase;color:var(--tenue);white-space:nowrap}
+.explorado b{color:var(--crema);font-variant-numeric:tabular-nums}
+.explorado .pista{width:54px;height:3px;background:var(--negro-3);overflow:hidden}
+.explorado .pista i{display:block;height:100%;width:0;background:var(--ac);transition:width .6s var(--salida)}
+.explorado.completo b{color:var(--ac)}
+.nav .boton{display:none}
+.barra-progreso{position:absolute;left:0;bottom:-1px;height:2px;width:0;background:var(--ac)}
+
+/* Aviso al descubrir una sección */
+.aviso{position:fixed;left:50%;top:76px;translate:-50% 0;z-index:55;font:700 12px/1 var(--txt);letter-spacing:.12em;text-transform:uppercase;background:var(--ac);color:var(--negro);padding:10px 14px;opacity:0;transform:translateY(-8px);transition:opacity .3s,transform .4s var(--salida);pointer-events:none;white-space:nowrap}
+.aviso.ver{opacity:1;transform:none}
+
+/* ===== Hero ===== */
+.hero{position:relative;min-height:100svh;display:grid;align-content:center;padding:96px 0 40px;overflow:hidden}
+#red{position:absolute;inset:0;width:100%;height:100%;z-index:0}
+.hero::after{content:"";position:absolute;inset:auto 0 0;height:200px;background:linear-gradient(transparent,var(--negro));z-index:0;pointer-events:none}
+.hero .envoltorio{position:relative;z-index:1;display:grid;gap:40px}
+.hero .hud{margin-bottom:20px}
+.hero h1{font-size:clamp(48px,10vw,100px)}
+.hero h1 .l{display:block;white-space:nowrap}
+.hero h1 .ac{color:var(--ac)}
+.tachar{position:relative;display:inline-block}
+.tachar::after{content:"";position:absolute;left:-1%;right:-1%;top:50%;height:.11em;background:var(--rojo);transform:scaleX(0);transform-origin:left;transition:transform .5s var(--salida)}
+.tachar.si::after{transform:scaleX(1)}
+.hero .yo{max-width:44ch;font-size:clamp(17px,2vw,20px);color:var(--tenue);margin:24px 0 28px}
+.hero .yo b{color:var(--crema);font-weight:500}
+.hero .acciones{display:flex;flex-wrap:wrap;gap:12px}
+.cursor-txt{display:inline-block;width:.09em;height:.78em;background:var(--ac);vertical-align:-.04em;margin-left:.08em;animation:parpadeo 1s steps(1) infinite}
+
+/* Copiloto de estudio (hero): la IA te ayuda paso a paso */
+.copiloto{align-self:center;overflow:hidden}
+.copiloto .barra-t{display:flex;align-items:center;justify-content:space-between;padding:12px 16px;border-bottom:1px solid var(--linea)}
+.etapas-nav{display:flex;gap:4px;padding:10px 12px 0}
+.etapas-nav button{flex:1;min-width:0;background:none;border:0;border-bottom:2px solid var(--linea);padding:8px 2px;font:700 10.5px/1 var(--txt);letter-spacing:.08em;text-transform:uppercase;color:var(--tenue);cursor:pointer;transition:color .3s,border-color .3s}
+.etapas-nav button.on{color:var(--crema);border-color:var(--ac)}
+.etapas-nav button.hecha{border-color:rgba(var(--ac-rgb),.4)}
+.etapas{position:relative;height:300px}
+.etapa{position:absolute;inset:0;padding:18px 18px 10px;display:grid;align-content:center;justify-items:center;gap:16px;opacity:0;transform:translateY(10px) scale(.98);transition:opacity .45s var(--salida),transform .6s var(--salida);pointer-events:none}
+.etapa.on{opacity:1;transform:none;pointer-events:auto}
+.pie-e{font:800 15px/1.2 var(--tit);text-transform:uppercase;letter-spacing:.01em;text-align:center}
+.pie-e b{color:var(--ac);font-weight:800}
+/* 1 · foto del temario */
+.hoja-mini{position:relative;width:200px;height:165px;background:var(--crema);padding:16px;display:grid;align-content:start;gap:9px;transform:rotate(-3deg)}
+.hoja-mini b{font:800 14px/1 var(--tit);color:var(--negro);text-transform:uppercase}
+.hoja-mini i{display:block;height:6px;background:#CFCAB0}
+.hoja-mini .esq{position:absolute;width:18px;height:18px;border:0 solid var(--ac)}
+.hoja-mini .esq.a{top:-9px;left:-9px;border-width:3px 0 0 3px}.hoja-mini .esq.b{top:-9px;right:-9px;border-width:3px 3px 0 0}
+.hoja-mini .esq.c{bottom:-9px;left:-9px;border-width:0 0 3px 3px}.hoja-mini .esq.d{bottom:-9px;right:-9px;border-width:0 3px 3px 0}
+.e-foto.on .esq{animation:enfoca .8s var(--muelle)}
+@keyframes enfoca{from{transform:scale(1.6);opacity:0}}
+.hoja-mini .haz{position:absolute;left:-6px;right:-6px;height:3px;top:0;background:var(--ac);box-shadow:0 0 16px 3px rgba(var(--ac-rgb),.6);opacity:0}
+.e-foto.on .haz{animation:haz 1.8s var(--salida) .7s forwards}
+@keyframes haz{0%{top:0;opacity:1}85%{opacity:1}100%{top:100%;opacity:0}}
+.hoja-mini .flash{position:absolute;inset:0;background:#fff;opacity:0;pointer-events:none}
+.e-foto.on .flash{animation:flash .5s ease-out .35s}
+@keyframes flash{30%{opacity:.9}}
+/* 2 · esquema */
+.e-esq svg{width:100%;max-width:330px;height:auto;overflow:visible}
+.e-esq .rama{fill:none;stroke:var(--ac);stroke-width:2;stroke-dasharray:140;stroke-dashoffset:140}
+.e-esq.on .rama{animation:trazar .7s var(--salida) forwards}
+.e-esq.on .rama:nth-of-type(2){animation-delay:.25s}.e-esq.on .rama:nth-of-type(3){animation-delay:.5s}
+@keyframes trazar{to{stroke-dashoffset:0}}
+.e-esq .nodo-c rect{fill:var(--ac)}
+.e-esq .nodo-c text{fill:var(--negro);font:800 12.5px "Bricolage Grotesque",sans-serif}
+.e-esq .hoja-n{opacity:0;transform-box:fill-box;transform-origin:left center}
+.e-esq.on .hoja-n{animation:brota .5s var(--muelle) forwards}
+.e-esq.on .hoja-n.n1{animation-delay:.6s}.e-esq.on .hoja-n.n2{animation-delay:.85s}.e-esq.on .hoja-n.n3{animation-delay:1.1s}
+@keyframes brota{from{opacity:0;transform:scale(.6)}to{opacity:1;transform:none}}
+.e-esq .hoja-n rect{fill:var(--negro-3);stroke:var(--linea-fuerte)}
+.e-esq .hoja-n text{fill:var(--crema);font:600 11.5px "Schibsted Grotesk",sans-serif}
+/* 3 · test */
+.e-test{justify-items:stretch;gap:9px}
+.e-test .q{font:800 16px/1.25 var(--tit);margin-bottom:4px}
+.e-test .op{padding:10px 12px;border:1px solid var(--linea);font-size:14.5px;opacity:0;transform:translateX(-8px)}
+.e-test.on .op{animation:entra-op .4s var(--salida) forwards}
+.e-test.on .op:nth-of-type(2){animation-delay:.15s}.e-test.on .op:nth-of-type(3){animation-delay:.3s}
+@keyframes entra-op{to{opacity:1;transform:none}}
+.e-test.on .op.bien{animation:entra-op .4s var(--salida) forwards,acierto .4s 1.3s forwards}
+@keyframes acierto{to{border-color:var(--verde);background:rgba(0,200,83,.14)}}
+.e-test .op.bien::after{content:"  ✓ correcta";color:var(--verde);opacity:0}
+.e-test.on .op.bien::after{animation:aparecer .2s 1.4s forwards}
+.e-test .pie-e{margin-top:6px}
+/* 4 · tarjeta de repaso que se gira */
+.tarjeta-flip{position:relative;width:250px;height:140px;perspective:800px}
+.cara-f{position:absolute;inset:0;display:grid;place-items:center;align-content:center;gap:8px;padding:16px;text-align:center;backface-visibility:hidden;border:1px solid var(--linea-fuerte);transition:transform .7s var(--salida)}
+.cara-f.del{background:var(--negro-3);font:800 16px/1.25 var(--tit)}
+.cara-f.tras{background:var(--ac);color:var(--negro);font:800 24px/1 var(--tit);text-transform:uppercase;transform:rotateY(180deg)}
+.cara-f.tras small{font:600 12px/1.2 var(--txt);text-transform:none}
+.e-tarjeta.girada .cara-f.del{transform:rotateY(-180deg)}
+.e-tarjeta.girada .cara-f.tras{transform:rotateY(0)}
+/* 5 · plan del día */
+.e-plan{grid-template-columns:auto auto;align-content:center;justify-content:center;align-items:center;gap:16px 20px}
+.e-plan .pie-e{grid-column:1/-1}
+.plan-hoy{position:relative;width:84px;height:84px;display:grid;place-items:center}
+.plan-hoy svg{position:absolute;inset:0;transform:rotate(-90deg)}
+.plan-hoy circle{fill:none;stroke:var(--negro-3);stroke-width:7}
+.plan-hoy circle.v{stroke:var(--ac);stroke-dasharray:163.4;stroke-dashoffset:163.4}
+.e-plan.on circle.v{animation:anillo 1.2s var(--salida) .3s forwards}
+@keyframes anillo{to{stroke-dashoffset:54.5}}
+.plan-hoy span{font:800 20px/1 var(--tit);text-align:center}
+.plan-hoy small{display:block;font:600 10px/1 var(--txt);color:var(--tenue);text-transform:uppercase;letter-spacing:.1em;margin-top:3px}
+.e-plan ul{list-style:none;display:grid;gap:9px;font-size:14px}
+.e-plan li{display:flex;gap:9px;align-items:center;color:var(--tenue)}
+.e-plan li::before{content:"";width:14px;height:14px;border:1.5px solid var(--linea-fuerte);flex:none}
+.e-plan li.ok{color:var(--crema)}
+.e-plan.on li.ok::before{animation:marca .3s .5s forwards}
+.e-plan.on li.ok:nth-child(2)::before{animation-delay:.9s}
+@keyframes marca{to{background:var(--ac);border-color:var(--ac)}}
+.progreso-e{height:2px;background:var(--linea);margin:0 12px}
+.progreso-e i{display:block;height:100%;width:0;background:var(--ac)}
+.aviso-fuente{font-size:12px;color:var(--tenue);padding:10px 16px 14px}
+
+/* Lo que hay abajo: el gancho para seguir bajando */
+.abajo{position:relative;z-index:1;margin-top:46px}
+.hero .envoltorio.abajo{display:block}
+.abajo .hud{margin-bottom:14px}
+.indice{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
+.indice a{position:relative;display:grid;gap:6px;padding:14px 14px 13px;border:1px solid var(--linea-fuerte);background:rgba(16,21,17,.7);transition:border-color .25s,transform .35s var(--muelle);overflow:hidden}
+.indice a:hover{border-color:var(--ac);transform:translateY(-3px)}
+.indice a .n{font:700 11px/1 var(--txt);letter-spacing:.12em;color:var(--tenue);text-transform:uppercase;display:flex;justify-content:space-between}
+.indice a .n i{font-style:normal;color:var(--ac);opacity:0;transition:opacity .3s}
+.indice a.visto .n i{opacity:1}
+.indice a strong{font:800 17px/1.1 var(--tit);text-transform:uppercase}
+.indice a::after{content:"";position:absolute;left:0;bottom:0;height:2px;width:100%;background:var(--ac);transform:scaleX(0);transform-origin:left;transition:transform .5s var(--salida)}
+.indice a.visto::after{transform:scaleX(1)}
+.baja{display:flex;align-items:center;gap:14px;margin-top:26px;font:800 15px/1 var(--tit);text-transform:uppercase;color:var(--crema)}
+.baja .rueda{width:24px;height:38px;border:2px solid var(--linea-fuerte);border-radius:12px;position:relative;flex:none}
+.baja .rueda::after{content:"";position:absolute;left:50%;top:7px;width:4px;height:8px;margin-left:-2px;border-radius:2px;background:var(--ac);animation:rueda 1.6s var(--salida) infinite}
+@keyframes rueda{0%{transform:translateY(0);opacity:1}80%{transform:translateY(14px);opacity:0}100%{opacity:0}}
+.solo-movil{margin-top:22px}
+@media (min-width:900px){.solo-movil{display:none}}
+.baja small{display:block;font:500 13px/1.3 var(--txt);text-transform:none;color:var(--tenue);margin-top:5px}
+
+/* Cinta */
+.cinta{border-block:1px solid var(--linea);overflow:hidden;white-space:nowrap;background:rgba(16,21,17,.85)}
+.cinta .pista{display:inline-flex;gap:40px;padding:16px 0;animation:cinta 40s linear infinite}
+.cinta span{font:800 clamp(18px,2.4vw,24px)/1 var(--tit);text-transform:uppercase}
+.cinta span.ac{color:var(--ac)}
+.cinta i{width:7px;height:7px;background:var(--ac);align-self:center;transform:rotate(45deg)}
+@keyframes cinta{to{transform:translateX(-50%)}}
+
+/* ===== Secciones ===== */
+section{position:relative;padding:100px 0}
+.cabecera{display:grid;gap:16px;margin-bottom:48px;max-width:780px}
+.cabecera h2{font-size:clamp(40px,7.4vw,84px)}
+.cabecera p{color:var(--tenue);font-size:18px;max-width:54ch}
+.cabecera p b{color:var(--crema);font-weight:500}
+
+/* ===== Proyectos en vivo ===== */
+.proyectos{display:grid;gap:22px}
+.proyecto{display:grid;gap:22px;padding:22px;overflow:hidden}
+.proyecto .info{display:grid;gap:14px;align-content:start}
+.proyecto .cab{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.proyecto h3{font-size:clamp(34px,5vw,58px)}
+.proyecto p{color:var(--tenue);max-width:48ch}
+.proyecto p b{color:var(--crema);font-weight:500}
+.proyecto .acciones{display:flex;flex-wrap:wrap;gap:10px;margin-top:6px}
+.proyecto .visita{display:inline-flex;align-items:center;gap:8px;font:700 14px/1 var(--txt);color:var(--ac);border-bottom:1px solid currentColor;padding-bottom:4px}
+.proyecto .visita svg{width:15px;height:15px;transition:transform .3s var(--muelle)}
+.proyecto .visita:hover svg{transform:translate(3px,-3px)}
+.lista-mini{list-style:none;display:grid;gap:8px;font-size:15.5px;color:var(--tenue)}
+.lista-mini li{display:flex;gap:10px}
+.lista-mini li::before{content:"›";color:var(--ac);font-weight:700}
+
+/* Ventana de navegador con la web real que se recorre sola */
+.navegador{--alto:300px;position:relative;display:block;border:1px solid var(--linea-fuerte);background:#fff;overflow:hidden;transform:perspective(1200px) rotateX(var(--rx,0deg)) rotateY(var(--ry,0deg));transition:transform .4s var(--salida);box-shadow:0 30px 60px -30px rgba(0,0,0,.8)}
+.navegador .barra-n{display:flex;align-items:center;gap:10px;padding:9px 12px;background:var(--negro-2);border-bottom:1px solid var(--linea)}
+.navegador .puntos{display:flex;gap:5px}
+.navegador .puntos i{width:9px;height:9px;border-radius:50%;background:var(--negro-3)}
+.navegador .url{flex:1;display:flex;align-items:center;gap:7px;font:500 12.5px/1 var(--txt);color:var(--tenue);background:var(--negro);padding:7px 10px;overflow:hidden;white-space:nowrap}
+.navegador .url svg{width:11px;height:11px;flex:none;stroke:var(--ac)}
+.navegador .carga{position:absolute;left:0;top:36px;height:2px;width:0;background:var(--ac);z-index:4}
+.navegador.dentro .carga{animation:carga 1.2s var(--salida) forwards}
+@keyframes carga{0%{width:0;opacity:1}90%{width:100%;opacity:1}100%{width:100%;opacity:0}}
+.navegador .pantalla{position:relative;height:var(--alto);overflow:hidden;background:#f6f6f2}
+.navegador .pantalla img{width:100%;height:auto;transform:translateY(0);will-change:transform}
+.navegador.dentro .pantalla img.recorre{animation:recorrer var(--dur,26s) ease-in-out 1.2s infinite alternate}
+.navegador:hover .pantalla img.recorre{animation-play-state:paused}
+@keyframes recorrer{0%,8%{transform:translateY(0)}92%,100%{transform:translateY(calc(-100% + var(--alto)))}}
+.navegador .pausa{position:absolute;right:10px;bottom:10px;font:700 10px/1 var(--txt);letter-spacing:.12em;text-transform:uppercase;background:var(--negro);color:var(--crema);padding:6px 8px;opacity:0;transition:opacity .2s;z-index:3}
+.navegador:hover .pausa{opacity:.9}
+
+/* Móvil con la web real (Valdeza) */
+.telefono{--alto:520px;position:relative;display:block;justify-self:center;width:min(270px,78vw);border:1px solid var(--linea-fuerte);border-radius:36px;padding:10px;background:var(--negro-2);transform:perspective(1200px) rotateY(var(--ry,-8deg)) rotateX(var(--rx,0deg));transition:transform .5s var(--salida);box-shadow:20px 30px 60px -30px rgba(0,0,0,.9)}
+.telefono .pantalla{height:var(--alto);overflow:hidden;border-radius:27px;background:#0b0f0d;position:relative}
+.telefono .pantalla img{width:100%}
+.telefono.dentro .pantalla img{animation:recorrer 30s ease-in-out 1s infinite alternate}
+.telefono:hover .pantalla img{animation-play-state:paused}
+.telefono .isla{position:absolute;top:18px;left:50%;translate:-50% 0;width:76px;height:20px;border-radius:12px;background:#000;z-index:2}
+
+/* Planificador: demo en dos pasos con cursor */
+.destacado{border-color:rgba(var(--ac-rgb),.45)}
+.destacado .navegador{--alto:360px}
+.demo-plan .pantalla img{position:absolute;inset:0 0 auto 0;transition:opacity .6s var(--salida)}
+.demo-plan .pantalla img.paso-b{opacity:0}
+.demo-plan.plan .pantalla img.paso-a{opacity:0}
+.demo-plan.plan .pantalla img.paso-b{opacity:1}
+.cursor{position:absolute;z-index:3;width:22px;height:22px;left:75%;top:85%;transition:left 1s var(--salida),top 1s var(--salida),opacity .3s;pointer-events:none;filter:drop-shadow(0 2px 3px rgba(0,0,0,.4))}
+.cursor svg{width:100%;height:100%}
+.cursor .clic{position:absolute;left:-10px;top:-10px;width:28px;height:28px;border-radius:50%;border:2px solid var(--negro);opacity:0}
+.cursor.pulsa .clic{animation:clic .5s var(--salida)}
+@keyframes clic{0%{transform:scale(.3);opacity:1}100%{transform:scale(1.6);opacity:0}}
+.pasos-demo{position:absolute;left:10px;top:46px;z-index:3;display:flex;gap:6px}
+.pasos-demo span{font:700 10px/1 var(--txt);letter-spacing:.1em;text-transform:uppercase;background:var(--negro);color:var(--tenue);padding:6px 8px;transition:background .3s,color .3s}
+.pasos-demo span.on{background:var(--ac);color:var(--negro)}
+
+/* ===== Qué sé hacer ===== */
+.servicios{display:grid;gap:18px}
+.servicio{padding:24px;display:grid;gap:14px;align-content:start;overflow:hidden}
+.servicio h3{font-size:clamp(26px,3vw,32px)}
+.servicio p{color:var(--tenue)}
+.servicio .vis{height:120px;border:1px solid var(--linea);position:relative;overflow:hidden;background:linear-gradient(var(--linea) 1px,transparent 1px) 0 0/100% 24px,linear-gradient(90deg,var(--linea) 1px,transparent 1px) 0 0/24px 100%}
+.v-web i{position:absolute;opacity:0;transform:translateY(10px);transition:opacity .4s,transform .5s var(--muelle)}
+.servicio.dentro .v-web i{opacity:1;transform:none}
+.v-web i:nth-child(1){left:12px;right:12px;top:12px;height:10px;background:var(--linea-fuerte);transition-delay:.1s}
+.v-web i:nth-child(2){left:12px;width:46%;top:32px;height:26px;background:var(--ac);transition-delay:.25s}
+.v-web i:nth-child(3){left:12px;width:34%;top:66px;height:7px;background:var(--linea-fuerte);transition-delay:.4s}
+.v-web i:nth-child(4){left:12px;width:22%;top:84px;height:20px;background:var(--ac-2);transition-delay:.55s}
+.v-web i:nth-child(5){right:12px;width:36%;top:32px;bottom:12px;background:var(--negro-3);border:1px solid var(--ac);transition-delay:.7s}
+.v-app .m{position:absolute;left:28%;top:14px;width:58px;bottom:-10px;border:1.5px solid var(--ac);border-radius:12px 12px 0 0;padding:12px 7px;display:grid;gap:6px;align-content:start}
+.v-app .m b{height:5px;background:var(--linea-fuerte)} .v-app .m b:first-child{background:var(--ac)}
+.v-app .r{position:absolute;right:22%;top:30px;width:54px;height:54px;border-radius:50%;border:1.5px solid var(--ac-2);display:grid;place-items:center;font:800 12px/1 var(--tit);color:var(--ac-2)}
+.v-app .r::after{content:"";position:absolute;inset:6px;border-radius:50%;border:2px solid transparent;border-top-color:var(--ac-2);animation:girar 2.4s linear infinite}
+@keyframes girar{to{transform:rotate(360deg)}}
+.v-herr{display:grid;grid-template-columns:repeat(6,1fr);gap:6px;padding:14px}
+.v-herr i{border:1px solid var(--linea-fuerte);animation:enciende 3s infinite;animation-delay:calc(var(--i) * .18s)}
+@keyframes enciende{0%,100%{background:transparent}20%{background:rgba(var(--ac-rgb),.55)}}
+.v-auto svg{position:absolute;inset:0;width:100%;height:100%}
+.v-auto .ruta{stroke:var(--linea-fuerte);stroke-width:1.5;fill:none}
+.v-auto .senal{stroke:var(--ac);stroke-width:2.5;fill:none;stroke-dasharray:18 300;animation:senal 2.6s linear infinite}
+@keyframes senal{from{stroke-dashoffset:318}to{stroke-dashoffset:0}}
+.v-auto .nodo{fill:var(--negro);stroke:var(--ac);stroke-width:1.5}
+.lema{margin-top:30px;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:18px;padding:24px}
+.lema p{font:800 clamp(22px,3vw,32px)/1.1 var(--tit);text-transform:uppercase;max-width:28ch}
+.lema p span{color:var(--ac)}
+
+/* ===== IA en mi día a día ===== */
+.diario{display:grid;gap:22px;align-items:center}
+.escena{position:relative;display:flex;justify-content:center;align-items:center;gap:22px;padding:56px 16px 34px;min-height:540px;overflow:hidden}
+.escena .ejemplo{position:absolute;top:14px;right:14px}
+.escena .paso-hud{position:absolute;top:16px;left:16px}
+.reloj{position:relative;flex:none;width:150px;height:150px;border-radius:50%;background:#000;border:7px solid #2a312b;box-shadow:0 0 0 2px #121712,0 20px 40px -18px rgba(0,0,0,.9);text-align:center}
+.reloj::before,.reloj::after{content:"";position:absolute;right:-13px;width:7px;height:20px;background:#2a312b;border-radius:2px}
+.reloj::before{top:30px}.reloj::after{bottom:30px}
+.reloj .cara{position:absolute;inset:0;display:grid;place-items:center;align-content:center;gap:5px;padding:18px;transition:opacity .4s}
+.reloj .hora{font:800 26px/1 var(--tit)}
+.reloj .linea-r{font:500 10.5px/1.3 var(--txt);color:var(--tenue)}
+.reloj .linea-r b{color:var(--ac)}
+.reloj .grabar{width:34px;height:34px;border-radius:50%;background:var(--rojo);display:grid;place-items:center;margin-top:4px}
+.reloj .grabar i{width:12px;height:12px;border-radius:50%;background:#fff}
+.reloj.grabando .grabar{animation:latir 1s ease-in-out infinite}
+@keyframes latir{50%{transform:scale(1.12)}}
+.reloj .ondas-r{display:flex;gap:3px;height:22px;align-items:center}
+.reloj .ondas-r i{width:3px;height:20%;background:var(--ac);border-radius:2px}
+.reloj.grabando .ondas-r i{animation:onda .9s ease-in-out infinite;animation-delay:calc(var(--i) * -.12s)}
+@keyframes onda{50%{height:100%}}
+.reloj .c2{opacity:0}
+.escena:not([data-paso="0"]) .reloj .c1{opacity:0}
+.escena:not([data-paso="0"]) .reloj .c2{opacity:1}
+.enlace-r{position:relative;width:46px;height:2px;background:var(--linea-fuerte);flex:none}
+.enlace-r::after{content:"";position:absolute;left:0;top:-2px;width:8px;height:6px;background:var(--ac);opacity:0}
+.escena[data-paso="2"] .enlace-r::after{animation:viaja .8s linear infinite;opacity:1}
+@keyframes viaja{from{left:0}to{left:calc(100% - 8px)}}
+.iphone{position:relative;flex:none;width:220px;height:440px;border-radius:38px;background:#000;border:7px solid #1d231e;box-shadow:0 30px 60px -30px rgba(0,0,0,.9)}
+.iphone .isla{position:absolute;top:10px;left:50%;translate:-50% 0;width:70px;height:20px;border-radius:12px;background:#000;border:1px solid #1d231e;z-index:3}
+.iphone .app{position:absolute;inset:5px;border-radius:30px;background:var(--negro-2);overflow:hidden;padding:40px 12px 60px;display:grid;align-content:start;gap:9px}
+.iphone .app .tit-app{display:flex;justify-content:space-between;align-items:baseline}
+.iphone .app .tit-app strong{font:800 22px/1 var(--tit)}
+.iphone .app .tit-app span{font:500 10.5px/1 var(--txt);color:var(--tenue)}
+.tarjeta-app{border:1px solid var(--linea);padding:9px 10px;display:grid;gap:6px;font-size:12px;line-height:1.35;transition:border-color .4s,background .4s,opacity .4s,transform .5s var(--muelle)}
+.tarjeta-app .k{font:700 9.5px/1 var(--txt);letter-spacing:.12em;text-transform:uppercase;color:var(--tenue)}
+.tarjeta-app .k b{color:var(--ac)}
+.tarjeta-app.resumen{background:rgba(var(--ac-rgb),.08);border-color:rgba(var(--ac-rgb),.35)}
+.tarjeta-app .bruto{font:400 11px/1.45 var(--mono);color:var(--crema);min-height:32px}
+.tarjeta-app.nota{opacity:.35}
+.escena[data-paso="2"] .tarjeta-app.nota,.escena[data-paso="3"] .tarjeta-app.nota{opacity:1;border-color:var(--ac-2)}
+.tarjeta-app.orden{opacity:0;transform:translateY(10px)}
+.escena[data-paso="3"] .tarjeta-app.orden{opacity:1;transform:none;border-color:var(--ac)}
+.tarjeta-app.orden strong{font:800 14px/1.1 var(--tit);text-transform:uppercase}
+.tarea{display:flex;gap:8px;align-items:center}
+.tarea i{width:12px;height:12px;border:1.5px solid var(--ac);flex:none}
+.barra-tabs{position:absolute;left:10px;right:10px;bottom:10px;display:flex;justify-content:space-around;padding:9px 6px;border-radius:18px;background:rgba(250,247,230,.08);font:600 9.5px/1 var(--txt);color:var(--tenue);z-index:2}
+.barra-tabs span:first-child{color:var(--ac)}
+.diario .textos{display:grid;gap:18px}
+.app-propia{padding:22px;display:grid;gap:10px}
+.app-propia h3{font-size:30px;display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.app-propia p{color:var(--tenue)}
+.paso-txt{display:grid;gap:8px;list-style:none;counter-reset:p}
+.paso-txt li{display:flex;gap:12px;color:var(--tenue);transition:color .3s}
+.paso-txt li::before{counter-increment:p;content:counter(p);flex:none;width:22px;height:22px;display:grid;place-items:center;font:700 12px/1 var(--txt);border:1px solid var(--linea-fuerte);transition:background .3s,color .3s}
+.paso-txt li.on{color:var(--crema)}
+.paso-txt li.on::before{background:var(--ac);color:var(--negro);border-color:var(--ac)}
+
+/* ===== Parra OS: cerebro ===== */
+.cerebro{display:grid;margin-bottom:22px;overflow:hidden}
+.cerebro canvas{width:100%;height:440px;display:block;cursor:crosshair;touch-action:pan-y}
+.cerebro-info{padding:22px;display:grid;gap:12px;border-top:1px solid var(--linea);background:rgba(10,13,11,.7)}
+.cerebro-info h3{font-size:clamp(30px,4vw,44px)}
+.cerebro-info p{color:var(--tenue)}
+.cifras{display:flex;flex-wrap:wrap;gap:8px}
+.cifras span{display:grid;gap:5px;padding:10px 12px;border:1px solid var(--linea-fuerte);font:600 11px/1 var(--txt);letter-spacing:.1em;text-transform:uppercase;color:var(--tenue);min-width:96px}
+.cifras b{font:800 22px/1 var(--tit);letter-spacing:-.01em;color:var(--ac);text-transform:none}
+.cerebro-ayuda{min-height:2.4em;text-transform:none;letter-spacing:.04em;font-size:13px}
+.cerebro-ayuda b{text-transform:uppercase;letter-spacing:.12em}
+/* ===== Robot ===== */
+.robot-caja{display:grid;margin-top:22px;overflow:hidden}
+.robot-escena{position:relative;display:grid;place-items:center;align-content:center;padding:44px 10px 28px;min-height:300px;background:radial-gradient(circle at 50% 55%,rgba(var(--ac-rgb),.10),transparent 60%)}
+.robot{position:relative;display:grid;justify-items:center;animation:flota 4s ease-in-out infinite}
+@keyframes flota{50%{transform:translateY(-8px)}}
+.antena{width:3px;height:26px;background:#3a433b;position:relative}
+.antena i{position:absolute;top:-10px;left:50%;width:12px;height:12px;margin-left:-6px;border-radius:50%;background:var(--ac-2);box-shadow:0 0 12px var(--ac-2);animation:parpadeo 1.4s steps(1) infinite}
+.cabeza{width:150px;height:110px;border-radius:30px;background:#1d241e;border:2px solid var(--linea-fuerte);padding:12px;box-shadow:inset 0 -6px 0 rgba(0,0,0,.3)}
+.cara-r{height:100%;border-radius:18px;background:#050806;display:grid;grid-template-columns:1fr 1fr;align-items:center;justify-items:center;padding:12px 18px 6px;gap:2px 0}
+.ojo{width:20px;height:24px;border-radius:8px;background:var(--ac);box-shadow:0 0 12px rgba(var(--ac-rgb),.8);animation:pestanea 4.5s infinite;transition:height .3s,width .3s}
+@keyframes pestanea{0%,92%,100%{transform:scaleY(1)}95%{transform:scaleY(.1)}}
+.robot.escucha .ojo{height:14px;border-radius:14px 14px 4px 4px}
+.boca{grid-column:1/-1;display:flex;gap:3px;align-items:center;height:16px}
+.boca i{width:4px;height:3px;border-radius:2px;background:var(--ac)}
+.robot.habla .boca i{animation:onda .45s ease-in-out infinite}
+.boca i:nth-child(2){animation-delay:-.07s}.boca i:nth-child(3){animation-delay:-.14s}.boca i:nth-child(4){animation-delay:-.21s}.boca i:nth-child(5){animation-delay:-.28s}.boca i:nth-child(6){animation-delay:-.35s}.boca i:nth-child(7){animation-delay:-.42s}
+.cuello{width:34px;height:10px;background:#141a15}
+.cuerpo-r{width:120px;height:70px;border-radius:24px 24px 16px 16px;background:#1d241e;border:2px solid var(--linea-fuerte);display:grid;place-items:center}
+.nucleo{width:22px;height:22px;border-radius:50%;border:2px solid var(--ac);animation:led 2s infinite;transition:background .3s}
+.robot.habla .nucleo{background:var(--ac)}
+.sombra-r{width:110px;height:12px;border-radius:50%;background:rgba(0,0,0,.6);margin-top:12px;animation:sombra 4s ease-in-out infinite}
+@keyframes sombra{50%{transform:scaleX(.85);opacity:.7}}
+.robot-info{padding:22px;display:grid;gap:12px;align-content:start}
+.robot-info .cab{display:flex;gap:8px;align-items:center}
+.robot-info h3{font-size:clamp(30px,4vw,44px)}
+.robot-info > p{color:var(--tenue)}
+.chat{display:grid;gap:8px;min-height:160px;align-content:start;margin-top:4px}
+.burbuja{max-width:90%;padding:10px 13px;font-size:15px;line-height:1.4;opacity:0;transform:translateY(6px);transition:opacity .3s,transform .4s var(--salida)}
+.burbuja.ver{opacity:1;transform:none}
+.burbuja.yo{justify-self:end;background:var(--negro-3);border:1px solid var(--linea-fuerte)}
+.burbuja.bot{justify-self:start;border:1px solid rgba(var(--ac-rgb),.5);background:rgba(var(--ac-rgb),.07)}
+.burbuja::before{font-weight:700;margin-right:4px}
+.burbuja.yo::before{content:"Yo ›";color:var(--ac-2)}
+.burbuja.bot::before{content:"Robot ›";color:var(--ac)}
+
+/* ===== Escáner de temario ===== */
+.escaner{display:grid;gap:18px;align-items:stretch}
+.hoja{padding:26px 24px;overflow:hidden}
+.hoja .art{font:800 22px/1.1 var(--tit);margin:14px 0 12px;text-transform:uppercase}
+.hoja .texto{font-size:18px;line-height:1.75;color:var(--tenue)}
+.hoja .clave{color:var(--crema);background:linear-gradient(var(--ac-2),var(--ac-2)) 0 88%/0% 30% no-repeat;transition:background-size .5s var(--salida)}
+.hoja .clave.on{background-size:100% 30%}
+.hoja .rayo{position:absolute;left:0;right:0;height:2px;top:0;background:var(--ac);box-shadow:0 0 18px 4px rgba(var(--ac-rgb),.45);opacity:0}
+.hoja.lee .rayo{animation:rayo 2.2s var(--salida) forwards}
+@keyframes rayo{0%{top:0;opacity:1}90%{opacity:1}100%{top:100%;opacity:0}}
+.flecha-proc{display:grid;place-items:center;color:var(--tenue)}
+.flecha-proc svg{width:34px;height:34px;transform:rotate(90deg)}
+.flecha-proc .puntos{display:flex;gap:6px;margin-top:8px}
+.flecha-proc .puntos i{width:6px;height:6px;background:var(--ac);opacity:.25;animation:procesa 1.2s infinite}
+.flecha-proc .puntos i:nth-child(2){animation-delay:.2s}.flecha-proc .puntos i:nth-child(3){animation-delay:.4s}
+@keyframes procesa{30%{opacity:1}}
+.test{padding:26px 24px;display:grid;gap:10px;align-content:start}
+.test .q{font:800 20px/1.2 var(--tit);margin:10px 0 6px}
+.test .r{padding:12px 14px;border:1px solid var(--linea);font-size:16px;opacity:0;transform:translateY(8px);transition:opacity .35s,transform .45s var(--salida),border-color .3s,background .3s}
+.test .r.ver{opacity:1;transform:none}
+.test .r.bien{border-color:var(--verde);background:rgba(0,200,83,.12)}
+.test .r .letra{color:var(--ac);font-weight:700;margin-right:8px}
+
+/* ===== Lo que aprenderás ===== */
+.aprende{display:grid;gap:12px}
+.leccion{display:flex;gap:16px;align-items:flex-start;padding:18px 20px;border:1px solid var(--linea);transition:border-color .4s,background .4s}
+.leccion .chk{flex:none;width:26px;height:26px;border:1.5px solid var(--linea-fuerte);display:grid;place-items:center;transition:background .3s .2s,border-color .3s .2s}
+.leccion .chk svg{width:14px;height:14px;stroke:var(--negro);stroke-width:3;fill:none;stroke-dasharray:24;stroke-dashoffset:24;transition:stroke-dashoffset .5s var(--salida) .35s}
+.leccion.dentro{border-color:rgba(var(--ac-rgb),.4);background:rgba(var(--ac-rgb),.04)}
+.leccion.dentro .chk{background:var(--ac);border-color:var(--ac)}
+.leccion.dentro .chk svg{stroke-dashoffset:0}
+.leccion strong{display:block;font:800 19px/1.15 var(--tit);text-transform:uppercase;margin-bottom:4px}
+.leccion span{color:var(--tenue);font-size:15.5px}
+.trans{display:grid;gap:22px;align-items:start;margin-top:60px}
+.trans > div{min-width:0}
+.pantalla-v{padding:12px;justify-self:center;width:min(300px,82vw)}
+.pantalla-v video{width:100%;aspect-ratio:9/16;object-fit:cover;background:var(--negro-3)}
+.pantalla-v .pie{display:flex;justify-content:space-between;align-items:center;padding:12px 4px 2px}
+.pantalla-v button{background:none;border:1px solid var(--linea-fuerte);padding:7px 10px;font:700 12px/1 var(--txt);letter-spacing:.08em;text-transform:uppercase;cursor:pointer}
+.laminas{display:flex;gap:14px;overflow-x:auto;scroll-snap-type:x mandatory;padding-bottom:12px;scrollbar-width:thin;scrollbar-color:var(--verde-osc) transparent}
+.laminas img{flex:none;width:min(210px,56vw);scroll-snap-align:start;border:1px solid var(--linea-fuerte);transition:transform .5s var(--salida)}
+.laminas img:hover{transform:translateY(-6px)}
+.redes{display:grid;gap:12px;margin-top:20px}
+.red{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:18px 20px;font:800 20px/1 var(--tit)}
+.red small{display:block;font:500 13px/1.3 var(--txt);color:var(--tenue);margin-top:6px}
+.red svg{width:22px;height:22px;stroke:var(--ac);transition:transform .35s var(--muelle);flex:none}
+.red:hover svg{transform:translate(3px,-3px)}
+
+/* ===== Registro ===== */
+.registro{position:relative;display:grid;gap:34px;padding-left:46px}
+.registro::before{content:"";position:absolute;left:11px;top:4px;bottom:4px;width:1px;background:var(--linea-fuerte)}
+.registro .progreso{position:absolute;left:10px;top:4px;width:3px;height:0;background:var(--ac);box-shadow:0 0 12px rgba(var(--ac-rgb),.6)}
+.hito{position:relative}
+.hito::before{content:"";position:absolute;left:-42px;top:6px;width:16px;height:16px;border:1px solid var(--ac);background:var(--negro);transform:rotate(45deg);transition:background .3s}
+.hito.dentro::before{background:var(--ac)}
+.hito .hud{margin-bottom:8px}
+.hito h3{font-size:clamp(28px,4vw,44px);margin-bottom:8px}
+.hito p{color:var(--tenue);max-width:52ch}
+.hito blockquote{margin-top:14px;font:800 clamp(20px,2.6vw,26px)/1.2 var(--tit);color:var(--ac-2);max-width:30ch}
+
+/* ===== Contacto: constructor de mensaje ===== */
+.canal{overflow:hidden;padding:120px 0}
+.canal .anillos{position:absolute;left:50%;top:40%;width:1000px;height:1000px;translate:-50% -50%;pointer-events:none}
+.canal .anillos i{position:absolute;inset:0;border:1px solid rgba(var(--ac-rgb),.22);border-radius:50%;animation:onda-canal 6s linear infinite;opacity:0}
+.canal .anillos i:nth-child(2){animation-delay:2s}.canal .anillos i:nth-child(3){animation-delay:4s}
+@keyframes onda-canal{0%{transform:scale(.15);opacity:0}15%{opacity:1}100%{transform:scale(1);opacity:0}}
+.canal .envoltorio{position:relative}
+.canal .cabecera{margin-inline:auto;text-align:center;justify-items:center}
+.canal h2{font-size:clamp(46px,10vw,124px)}
+.canal h2 span{color:var(--ac)}
+.constructor{display:grid;gap:20px;max-width:860px;margin-inline:auto;padding:24px}
+.constructor .paso{display:grid;gap:12px}
+.opciones{display:flex;flex-wrap:wrap;gap:8px}
+.opciones button{background:transparent;border:1px solid var(--linea-fuerte);padding:12px 14px;font:700 14.5px/1 var(--txt);cursor:pointer;transition:border-color .2s,background .2s,color .2s,transform .3s var(--muelle)}
+.opciones button:hover{border-color:var(--ac);transform:translateY(-2px)}
+.opciones button[aria-pressed="true"]{background:var(--ac);border-color:var(--ac);color:var(--negro)}
+.constructor input{width:100%;background:var(--negro);border:1px solid var(--linea-fuerte);padding:15px 14px;font-size:16px;color:var(--crema);outline:none;transition:border-color .2s}
+.constructor input:focus{border-color:var(--ac)}
+.constructor input::placeholder{color:#6d7268}
+.mensaje{font:400 14.5px/1.6 var(--mono);background:var(--negro);border:1px dashed var(--linea-fuerte);padding:14px;min-height:76px;color:var(--crema)}
+.mensaje::before{content:"tu mensaje › ";color:var(--ac-2)}
+.mensaje.vacio{color:#6d7268}
+.enviar{display:flex;flex-wrap:wrap;gap:10px}
+.copiado{font:700 12px/1.3 var(--txt);letter-spacing:.1em;text-transform:uppercase;color:var(--ac);opacity:0;transition:opacity .3s;align-self:center}
+.copiado.ver{opacity:1}
+.correo-linea{font-size:15px;color:var(--tenue)}
+.correo-linea a{color:var(--ac);border-bottom:1px solid currentColor}
+.promesa{display:grid;gap:10px;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));max-width:860px;margin:22px auto 0}
+.promesa div{padding:14px 16px;border:1px solid var(--linea);font-size:15px;color:var(--tenue);background:rgba(10,13,11,.6)}
+.promesa b{display:block;color:var(--crema);font:800 16px/1.2 var(--tit);text-transform:uppercase;margin-bottom:4px}
+
+footer{border-top:1px solid var(--linea);padding:28px 0 110px;font-size:14px;color:var(--tenue)}
+footer .envoltorio{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px}
+footer a:hover{color:var(--ac)}
+
+/* Selector de acento (solo maqueta) */
+.selector{position:fixed;left:50%;bottom:14px;translate:-50% 0;z-index:60;display:flex;align-items:center;gap:4px;padding:5px;background:rgba(10,13,11,.92);border:1px solid var(--linea-fuerte);backdrop-filter:blur(8px)}
+.selector span{font:700 11px/1 var(--txt);letter-spacing:.12em;text-transform:uppercase;color:var(--tenue);padding:0 8px}
+.selector button{display:flex;align-items:center;gap:7px;background:none;border:0;padding:9px 11px;font:700 13px/1 var(--txt);cursor:pointer}
+.selector button i{width:12px;height:12px}
+.selector button[aria-pressed="true"]{background:var(--crema);color:var(--negro)}
+.selector a{white-space:nowrap;font:700 12px/1 var(--txt);color:var(--tenue);padding:9px 10px;border-left:1px solid var(--linea)}
+
+/* ===== Pantallas grandes ===== */
+@media (min-width:640px){ .indice{grid-template-columns:repeat(3,1fr)} }
+@media (min-width:900px){
+  .nav-enlaces{display:flex}
+  .nav .boton{display:inline-flex}
+  .hero .envoltorio{grid-template-columns:1.25fr .75fr;align-items:center}
+  .indice{grid-template-columns:repeat(6,1fr)}
+  .proyecto{grid-template-columns:.9fr 1.1fr;align-items:center;padding:30px}
+  .proyecto.inverso{grid-template-columns:1.1fr .9fr}
+  .proyecto.inverso .info{order:2}
+  .navegador{--alto:380px}
+  .destacado .navegador{--alto:440px}
+  .servicios{grid-template-columns:repeat(4,1fr)}
+  .diario{grid-template-columns:1.1fr .9fr}
+  .cerebro{grid-template-columns:1.5fr .9fr}
+  .cerebro canvas{height:540px}
+  .cerebro-info{border-top:0;border-left:1px solid var(--linea);align-content:center}
+  .robot-caja{grid-template-columns:.8fr 1.2fr;align-items:center}
+  .escaner{grid-template-columns:1fr 70px 1fr}
+  .flecha-proc svg{transform:none}
+  .aprende{grid-template-columns:repeat(2,1fr)}
+  .trans{grid-template-columns:auto minmax(0,1fr);gap:48px}
+  .redes{grid-template-columns:repeat(3,1fr)}
+  section{padding:130px 0}
+}
+@media (max-width:460px){
+  .explorado .pista{display:none}
+  .escena{gap:10px;padding-inline:8px}
+  .reloj{width:112px;height:112px;border-width:5px}
+  .reloj .hora{font-size:20px}
+  .reloj .cara{padding:12px}
+  .iphone{width:184px;height:400px}
+  .enlace-r{width:14px}
+  .cerebro canvas{height:380px}
+}
+
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}
+  .aparece{opacity:1;transform:none}
+  .cinta .pista{animation:none}
+}
+</style>
+</head>
+<body>
+<div class="fondo" aria-hidden="true"></div>
+<div class="foco" aria-hidden="true"></div>
+<div class="aviso" id="aviso" role="status" aria-live="polite"></div>
+
+<div class="arranque" id="arranque" aria-hidden="true">
+  <div class="caja">
+    <p style="animation-delay:.05s">› cargando perfil <b>Jesús</b></p>
+    <p style="animation-delay:.35s">› módulos: <b>IA · oposiciones · apps</b></p>
+    <p style="animation-delay:.65s">› estado: <b>en línea</b></p>
+    <div class="barra"><i></i></div>
+  </div>
+</div>
+
+<header class="nav" id="nav">
+  <div class="envoltorio">
+    <a class="marca" href="#inicio">parrilla<span>_</span>opos</a>
+    <nav class="nav-enlaces" aria-label="Secciones">
+      <a href="#proyectos" data-sec="proyectos">Proyectos</a>
+      <a href="#que-hago" data-sec="que-hago">Qué hago</a>
+      <a href="#dia" data-sec="dia">Mi día a día</a>
+      <a href="#aprende" data-sec="aprende">Aprende</a>
+      <a href="#canal" data-sec="canal">Contacto</a>
+    </nav>
+    <span class="explorado" id="explorado" title="Secciones que has visto">Explorado <b id="cuenta">0/7</b><span class="pista"><i id="pista"></i></span></span>
+    <a class="boton peq" href="#canal">Escríbeme</a>
+  </div>
+  <span class="barra-progreso" id="barra"></span>
+</header>
+
+<main>
+<!-- ============ HERO ============ -->
+<section class="hero" id="inicio">
+  <canvas id="red" aria-hidden="true"></canvas>
+  <div class="envoltorio">
+    <div>
+      <p class="hud"><b>@parrilla_opos</b> · IA · oposiciones · apps</p>
+      <h1 class="tit">
+        <span class="l"><span data-cifra>La IA no es</span></span>
+        <span class="l"><span class="tachar" id="tachar"><span data-cifra>el problema.</span></span></span>
+        <span class="l ac"><span data-cifra>Es cómo</span></span>
+        <span class="l ac"><span data-cifra>la usas.</span><span class="cursor-txt"></span></span>
+      </h1>
+      <p class="yo">Soy <b>Jesús</b>. Aprobé una oposición a base de muchos test. Ahora lo hago todo con IA: <b>webs, apps y herramientas para opositores</b>. Si algo se repite, se puede automatizar.</p>
+      <div class="acciones">
+        <a class="boton" href="#proyectos">Ver mis proyectos
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="square"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        <a class="boton fantasma" href="#canal">Cuéntame tu idea</a>
+      </div>
+      <a class="baja solo-movil" href="#proyectos"><span class="rueda" aria-hidden="true"></span><span>Hay 7 secciones más abajo<small>Proyectos en vivo, mi cerebro digital, mi robot y más.</small></span></a>
+    </div>
+
+    <div class="copiloto marco" id="copiloto" aria-label="Ejemplo animado: la IA te ayuda a estudiar un artículo, de la foto al plan del día">
+      <div class="barra-t"><span class="hud"><span class="led"></span>Copiloto de estudio</span><span class="ejemplo">Ejemplo</span></div>
+      <div class="etapas-nav" id="etapas-nav">
+        <button type="button" class="on">Foto</button><button type="button">Esquema</button><button type="button">Test</button><button type="button">Repaso</button><button type="button">Plan</button>
+      </div>
+      <div class="etapas">
+        <div class="etapa e-foto on">
+          <div class="hoja-mini"><b>Artículo 14</b><i></i><i></i><i style="width:72%"></i><i></i><i style="width:58%"></i><i style="width:84%"></i>
+            <span class="esq a"></span><span class="esq b"></span><span class="esq c"></span><span class="esq d"></span><span class="haz"></span><span class="flash"></span></div>
+          <p class="pie-e">Haces una foto a <b>tu temario</b></p>
+        </div>
+        <div class="etapa e-esq">
+          <svg viewBox="0 0 320 170" aria-hidden="true">
+            <path class="rama" d="M108 85 C140 85 140 25 176 25"/><path class="rama" d="M108 85 L176 85"/><path class="rama" d="M108 85 C140 85 140 145 176 145"/>
+            <g class="nodo-c"><rect x="8" y="66" width="100" height="38"/><text x="58" y="90" text-anchor="middle">ART. 14 CE</text></g>
+            <g class="hoja-n n1"><rect x="176" y="10" width="138" height="30"/><text x="186" y="30">Iguales ante la ley</text></g>
+            <g class="hoja-n n2"><rect x="176" y="70" width="138" height="30"/><text x="186" y="90">Sin discriminación</text></g>
+            <g class="hoja-n n3"><rect x="176" y="130" width="138" height="30"/><text x="186" y="150">Por ninguna condición</text></g>
+          </svg>
+          <p class="pie-e">La IA te lo pasa a <b>esquema</b></p>
+        </div>
+        <div class="etapa e-test">
+          <p class="q">Según el art. 14, los españoles son iguales…</p>
+          <span class="op bien">A · ante la ley</span><span class="op">B · ante la Administración</span><span class="op">C · ante los tribunales</span>
+          <p class="pie-e">Te pregunta <b>antes de leer</b></p>
+        </div>
+        <div class="etapa e-tarjeta">
+          <div class="tarjeta-flip"><div class="cara-f del">¿Ante qué son iguales los españoles?</div><div class="cara-f tras">Ante la ley<small>Artículo 14 de la Constitución</small></div></div>
+          <p class="pie-e">Te lo repasa <b>antes de que se te olvide</b></p>
+        </div>
+        <div class="etapa e-plan">
+          <div class="plan-hoy"><svg viewBox="0 0 64 64"><circle cx="32" cy="32" r="26"/><circle class="v" cx="32" cy="32" r="26"/></svg><span>2/3<small>hoy</small></span></div>
+          <ul><li class="ok">Test del tema 1 · 15 min</li><li class="ok">Repasar el art. 14 · 10 min</li><li>Leer el tema 2 · 30 min</li></ul>
+          <p class="pie-e">Y lo encaja en <b>tu plan del día</b></p>
+        </div>
+      </div>
+      <div class="progreso-e"><i id="prog-e"></i></div>
+      <p class="aviso-fuente">Comprueba siempre lo importante en el texto oficial.</p>
+    </div>
+  </div>
+
+  <!-- Gancho: lo que te espera si bajas -->
+  <div class="envoltorio abajo">
+    <p class="hud">Lo que hay aquí abajo · <b id="quedan">7 por descubrir</b></p>
+    <div class="indice" id="indice">
+      <a href="#proyectos" data-ir="proyectos"><span class="n">En vivo <i>✓</i></span><strong>4 proyectos reales</strong></a>
+      <a href="#planificador" data-ir="proyectos"><span class="n">Gratis <i>✓</i></span><strong>Mi planificador</strong></a>
+      <a href="#que-hago" data-ir="que-hago"><span class="n">Servicios <i>✓</i></span><strong>Qué sé hacer</strong></a>
+      <a href="#dia" data-ir="dia"><span class="n">Mi sistema <i>✓</i></span><strong>Mi cerebro y mi robot</strong></a>
+      <a href="#aprende" data-ir="aprende"><span class="n">Si me sigues <i>✓</i></span><strong>Lo que aprenderás</strong></a>
+      <a href="#canal" data-ir="canal"><span class="n">Contacto <i>✓</i></span><strong>Tu idea, en 1 min</strong></a>
+    </div>
+    <a class="baja" href="#proyectos"><span class="rueda" aria-hidden="true"></span><span>Baja, esto solo es la entrada<small>Cada sección que veas se marca arriba.</small></span></a>
+  </div>
+</section>
+
+<div class="cinta" aria-hidden="true"><div class="pista">
+  <span>Webs</span><i></i><span class="ac">Apps a medida</span><i></i><span>Herramientas para opositores</span><i></i><span class="ac">Automatización con IA</span><i></i><span>Antes de leer, test</span><i></i>
+  <span>Webs</span><i></i><span class="ac">Apps a medida</span><i></i><span>Herramientas para opositores</span><i></i><span class="ac">Automatización con IA</span><i></i><span>Antes de leer, test</span><i></i>
+</div></div>
+
+<!-- ============ PROYECTOS EN VIVO ============ -->
+<section id="proyectos" data-explorar="Proyectos en vivo">
+  <div class="envoltorio">
+    <div class="cabecera">
+      <p class="hud aparece"><b>Proyectos en vivo</b></p>
+      <h2 class="tit aparece" style="--i:1">Hechos y funcionando</h2>
+      <p class="aparece" style="--i:2">Son webs reales y se recorren solas. <b>Pasa el ratón por encima para pararlas</b> y entra en la que te llame.</p>
+    </div>
+
+    <div class="proyectos">
+      <article class="proyecto marco destacado aparece" id="planificador">
+        <div class="info">
+          <div class="cab"><span class="etq lleno">Destacado</span><span class="etq vivo">Gratis · sin cuenta</span></div>
+          <h3 class="tit">Planificador de estudio</h3>
+          <p>Mi herramienta gratuita para opositores a Guardia Civil. Le dices <b>cómo llevas el temario, cuándo es tu examen y cuánto tiempo tienes</b>, y te monta la ruta por fases y el mes tema a tema.</p>
+          <ul class="lista-mini">
+            <li>Repasos espaciados y test en el momento justo</li>
+            <li>Empieza por los temas que más caen</li>
+            <li>Calendario del mes en PDF para imprimir</li>
+          </ul>
+          <div class="acciones">
+            <a class="boton peq" href="https://www.coposita.es/herramientas/planificador-estudio-guardia-civil" target="_blank" rel="noopener">Montar mi plan gratis
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6"><path d="M7 17L17 7M9 7h8v8"/></svg></a>
+          </div>
+        </div>
+        <div class="navegador demo-plan" id="demo-plan">
+          <div class="barra-n"><span class="puntos"><i></i><i></i><i></i></span><span class="url"><svg viewBox="0 0 24 24" fill="none" stroke-width="2.4"><rect x="5" y="11" width="14" height="10"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>coposita.es/herramientas/planificador-estudio-guardia-civil</span></div>
+          <span class="carga"></span>
+          <div class="pasos-demo"><span class="on" id="pd1">1 · Tus datos</span><span id="pd2">2 · Tu plan</span></div>
+          <div class="pantalla">
+            <img class="paso-a" id="plan-a" src="assets/web-planificador-pc.jpg" alt="Planificador de estudio de Guardia Civil: primer paso del formulario">
+            <img class="paso-b" id="plan-b" src="assets/web-planificador-plan.jpg" alt="Planificador de estudio: el plan generado con el calendario del mes">
+            <div class="cursor" id="cursor" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 2l16 10-7 1.5L9.5 21z" fill="#0A0D0B" stroke="#FAF7E6" stroke-width="1.5"/></svg><span class="clic"></span></div>
+          </div>
+        </div>
+      </article>
+
+      <article class="proyecto marco inverso aparece">
+        <div class="info">
+          <div class="cab"><span class="etq vivo">En marcha</span><span class="hud">Web · Next.js · Supabase</span></div>
+          <h3 class="tit">Coposita</h3>
+          <p>Mi portal de <b>herramientas gratis para opositar</b> a Guardia Civil y Policía Nacional: salas de estudio, PDF a texto, exámenes anteriores, el planificador… Sin cuenta y sin instalar nada.</p>
+          <div class="acciones"><a class="visita" href="https://coposita.es" target="_blank" rel="noopener">Visitar coposita.es <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M7 17L17 7M9 7h8v8"/></svg></a></div>
+        </div>
+        <a class="navegador inclina" href="https://coposita.es" target="_blank" rel="noopener" aria-label="Abrir coposita.es">
+          <div class="barra-n"><span class="puntos"><i></i><i></i><i></i></span><span class="url"><svg viewBox="0 0 24 24" fill="none" stroke-width="2.4"><rect x="5" y="11" width="14" height="10"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>coposita.es</span></div>
+          <span class="carga"></span>
+          <div class="pantalla"><img class="recorre" src="assets/web-coposita-pc.jpg" alt="Portada de coposita.es" loading="lazy"></div>
+          <span class="pausa">En pausa</span>
+        </a>
+      </article>
+
+      <article class="proyecto marco aparece">
+        <div class="info">
+          <div class="cab"><span class="etq obra">En construcción</span><span class="hud">App web · IA</span></div>
+          <h3 class="tit">Copositor</h3>
+          <p>Tu oposición convertida en <b>una partida al día</b> sobre tu temario. Subes de nivel cuando lo recuerdas días después, no por repetirlo hoy. Cada partida acaba con una pregunta de examen real.</p>
+          <div class="acciones"><a class="visita" href="https://copositor.es" target="_blank" rel="noopener">Visitar copositor.es <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M7 17L17 7M9 7h8v8"/></svg></a></div>
+        </div>
+        <a class="navegador inclina" href="https://copositor.es" target="_blank" rel="noopener" aria-label="Abrir copositor.es" style="--dur:30s">
+          <div class="barra-n"><span class="puntos"><i></i><i></i><i></i></span><span class="url"><svg viewBox="0 0 24 24" fill="none" stroke-width="2.4"><rect x="5" y="11" width="14" height="10"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>copositor.es</span></div>
+          <span class="carga"></span>
+          <div class="pantalla"><img class="recorre" src="assets/web-copositor-pc.jpg" alt="Portada de copositor.es" loading="lazy"></div>
+          <span class="pausa">En pausa</span>
+        </a>
+      </article>
+
+      <article class="proyecto marco inverso aparece">
+        <div class="info">
+          <div class="cab"><span class="etq vivo">En Google Play</span><span class="hud">App móvil · Flutter</span></div>
+          <h3 class="tit">Valdeza</h3>
+          <p>La app para la etapa de academia: <b>calendario, notas, Speaking, gastos y preparación física</b> en un solo sitio. Funciona sin conexión y la hice desde lo que viví como alumno.</p>
+          <div class="acciones"><a class="visita" href="https://valdeza.app" target="_blank" rel="noopener">Visitar valdeza.app <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M7 17L17 7M9 7h8v8"/></svg></a></div>
+        </div>
+        <a class="telefono inclina" href="https://valdeza.app" target="_blank" rel="noopener" aria-label="Abrir valdeza.app">
+          <span class="isla"></span>
+          <div class="pantalla"><img src="assets/web-valdeza-movil.jpg" alt="valdeza.app en el móvil" loading="lazy"></div>
+        </a>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ============ QUÉ SÉ HACER ============ -->
+<section id="que-hago" data-explorar="Qué sé hacer">
+  <div class="envoltorio">
+    <div class="cabecera">
+      <p class="hud aparece"><b>Qué sé hacer</b></p>
+      <h2 class="tit aparece" style="--i:1">Todo, con IA</h2>
+      <p class="aparece" style="--i:2">No soy programador de carrera. Trabajo con varias IAs a la vez y <b>construyo lo que necesito</b>, de la idea a algo que funciona.</p>
+    </div>
+    <div class="servicios">
+      <article class="servicio marco aparece" style="--i:0">
+        <div class="vis v-web" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></div>
+        <h3 class="tit">Páginas web</h3>
+        <p>Rápidas, a medida y con su propio estilo. Como las tres que acabas de ver.</p>
+      </article>
+      <article class="servicio marco aparece" style="--i:1">
+        <div class="vis v-app" aria-hidden="true"><span class="m"><b></b><b></b><b></b></span><span class="r">9:41</span></div>
+        <h3 class="tit">Apps a medida</h3>
+        <p>Para el móvil y hasta para el reloj. Pensadas para quien las va a usar.</p>
+      </article>
+      <article class="servicio marco aparece" style="--i:2">
+        <div class="vis v-herr" aria-hidden="true">
+          <i style="--i:0"></i><i style="--i:1"></i><i style="--i:2"></i><i style="--i:3"></i><i style="--i:4"></i><i style="--i:5"></i>
+          <i style="--i:6"></i><i style="--i:7"></i><i style="--i:8"></i><i style="--i:9"></i><i style="--i:10"></i><i style="--i:11"></i>
+        </div>
+        <h3 class="tit">Herramientas propias</h3>
+        <p>Planificadores, editores de vídeo, pixelado automático de cara… Si me hace falta, me la hago.</p>
+      </article>
+      <article class="servicio marco aparece" style="--i:3">
+        <div class="vis v-auto" aria-hidden="true">
+          <svg viewBox="0 0 240 120" preserveAspectRatio="none"><path class="ruta" d="M25 60 C70 60 70 25 120 25 S170 95 215 60"/><path class="senal" d="M25 60 C70 60 70 25 120 25 S170 95 215 60"/>
+            <circle class="nodo" cx="25" cy="60" r="8"/><circle class="nodo" cx="120" cy="25" r="8"/><circle class="nodo" cx="215" cy="60" r="8"/></svg>
+        </div>
+        <h3 class="tit">Automatizar</h3>
+        <p>Lo que haces a mano cada semana, que lo haga la máquina: avisos, resúmenes, informes.</p>
+      </article>
+    </div>
+    <div class="lema marco aparece">
+      <p>Si algo se repite, <span>se puede automatizar.</span></p>
+      <a class="boton" href="#canal">Cuéntame qué repites
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="square"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ IA EN MI DÍA A DÍA ============ -->
+<section id="dia" data-explorar="Mi día a día">
+  <div class="envoltorio">
+    <div class="cabecera">
+      <p class="hud aparece"><b>Mi día a día</b></p>
+      <h2 class="tit aparece" style="--i:1">Mi propio sistema</h2>
+      <p class="aparece" style="--i:2">Nada de esto se descarga: <b>me lo he montado para mí con IA</b>. Un cerebro digital que conecta todos mis proyectos, una app para el iPhone, otra para el reloj y un robot al que le hablo. Todo enganchado entre sí.</p>
+    </div>
+
+    <!-- Parra OS: el cerebro -->
+    <div class="cerebro marco aparece" id="cerebro-caja">
+      <canvas id="cerebro" aria-label="Animación: el cerebro de Parra OS conectado a todos los proyectos de Jesús"></canvas>
+      <div class="cerebro-info">
+        <p class="hud"><span class="led"></span><b>Parra OS</b> · mi cerebro digital</p>
+        <h3 class="tit">Todo conectado</h3>
+        <p>Una app de escritorio que lee mis proyectos, mis documentos y mis notas y los convierte en un mapa. Mis IAs le preguntan antes de ponerse a trabajar, así que nunca empiezan de cero.</p>
+        <div class="cifras">
+          <span><b>702.010</b>nodos</span><span><b>1,7 M</b>conexiones</span><span><b>57</b>proyectos</span>
+        </div>
+        <p class="hud cerebro-ayuda" id="cerebro-ayuda">Pasa el ratón por un nodo</p>
+      </div>
+    </div>
+
+    <div class="diario">
+
+      <div class="escena marco aparece" id="escena" data-paso="0" aria-label="Ejemplo animado: nota de voz en el reloj que la IA convierte en tareas en el iPhone">
+        <span class="hud paso-hud" id="paso-hud">Reloj · <b>resumen del día</b></span>
+        <span class="ejemplo">Ejemplo</span>
+        <div class="reloj" id="reloj">
+          <div class="cara c1"><span class="hora">7:30</span><span class="linea-r">Hoy: <b>3 cosas</b></span><span class="linea-r">2 vencen esta semana</span></div>
+          <div class="cara c2"><span class="linea-r"><b>Grabando</b></span>
+            <span class="ondas-r"><i style="--i:0"></i><i style="--i:1"></i><i style="--i:2"></i><i style="--i:3"></i><i style="--i:4"></i><i style="--i:5"></i><i style="--i:6"></i></span>
+            <span class="grabar"><i></i></span></div>
+        </div>
+        <span class="enlace-r" aria-hidden="true"></span>
+        <div class="iphone">
+          <span class="isla"></span>
+          <div class="app">
+            <div class="tit-app"><strong>Hoy</strong><span>Parra</span></div>
+            <div class="tarjeta-app resumen"><span class="k"><b>Resumen IA</b> · proyectos</span><span>Coposita: 2 cambios nuevos. Copositor: sin novedades.</span></div>
+            <div class="tarjeta-app nota"><span class="k">Nota de voz · <b id="estado-nota">esperando</b></span><span class="bruto" id="bruto"></span></div>
+            <div class="tarjeta-app orden"><span class="k"><b>Ordenada por IA</b></span><strong>Recados de mañana</strong>
+              <span class="tarea"><i></i>Llamar al taller</span><span class="tarea"><i></i>Repasar el tema 5</span></div>
+          </div>
+          <div class="barra-tabs"><span>Hoy</span><span>Agenda</span><span>Notas</span><span>Yo</span></div>
+        </div>
+      </div>
+      <div class="textos">
+        <ol class="paso-txt aparece" id="paso-txt">
+          <li class="on">El reloj me da el resumen del día al despertar.</li>
+          <li>Pulso un botón y grabo una nota de voz.</li>
+          <li>Se transcribe sola y llega al iPhone.</li>
+          <li>La IA la ordena en tareas. Yo no toco nada.</li>
+        </ol>
+        <article class="app-propia marco aparece" style="--i:1">
+          <h3 class="tit">Parra iOS <span class="etq vivo">La uso a diario</span></h3>
+          <p>Mi centro de control en el iPhone: agenda, resumen con IA de mis proyectos, escáner de documentos, notas de voz y avisos.</p>
+          <div class="pila"><span>Expo</span><span>Cloudflare Workers</span><span>IA</span></div>
+        </article>
+        <article class="app-propia marco aparece" style="--i:2">
+          <h3 class="tit">Parra Reloj <span class="etq obra">En desarrollo</span></h3>
+          <p>Para mi Amazfit con Zepp OS: el resumen del día en la muñeca y una grabadora cuyas notas se transcriben y se ordenan solas.</p>
+          <div class="pila"><span>Zepp OS</span><span>Whisper</span><span>JavaScript</span></div>
+        </article>
+      </div>
+    </div>
+
+    <!-- Robot asistente -->
+    <div class="robot-caja marco aparece">
+      <div class="robot-escena" aria-hidden="true">
+        <div class="robot" id="robot">
+          <span class="antena"><i></i></span>
+          <div class="cabeza"><div class="cara-r"><span class="ojo"></span><span class="ojo"></span>
+            <span class="boca"><i></i><i></i><i></i><i></i><i></i><i></i><i></i></span></div></div>
+          <div class="cuello"></div>
+          <div class="cuerpo-r"><span class="nucleo"></span></div>
+        </div>
+        <span class="sombra-r"></span>
+      </div>
+      <div class="robot-info">
+        <div class="cab"><span class="etq obra">En desarrollo</span><span class="ejemplo">Ejemplo</span></div>
+        <h3 class="tit">Mi robot asistente</h3>
+        <p>Un robot pequeño de verdad, encima de la mesa. Le hablo y gestiona mis cosas, porque está conectado al mismo cerebro que todo lo demás.</p>
+        <div class="chat" id="chat"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CÓMO ESTUDIO ============ -->
+<section id="escaner" data-explorar="Cómo estudio">
+  <div class="envoltorio">
+    <div class="cabecera">
+      <p class="hud aparece"><b>Cómo estudio</b></p>
+      <h2 class="tit aparece" style="--i:1">Antes de leer, test.</h2>
+      <p class="aparece" style="--i:2">Le paso a la IA un artículo y le pido que me pregunte. Así veo cómo lo preguntan <b>antes de leerlo en vacío</b>.</p>
+    </div>
+    <div class="escaner">
+      <div class="hoja marco aparece" id="hoja">
+        <span class="rayo"></span>
+        <p class="hud">Tu temario · <b>entrada</b></p>
+        <p class="art">Artículo 14</p>
+        <p class="texto">Los españoles son <span class="clave">iguales ante la ley</span>, sin que pueda prevalecer <span class="clave">discriminación alguna</span> por razón de nacimiento, raza, sexo, religión, opinión o <span class="clave">cualquier otra condición</span> o circunstancia personal o social.</p>
+      </div>
+      <div class="flecha-proc" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 12h16M14 6l6 6-6 6"/></svg>
+        <div class="puntos"><i></i><i></i><i></i></div>
+      </div>
+      <div class="test marco aparece" style="--i:1">
+        <p class="hud">Pregunta generada · <b>salida</b></p>
+        <p class="q">Según el artículo 14, los españoles son iguales…</p>
+        <span class="r" data-r><span class="letra">A</span>ante la ley</span>
+        <span class="r" data-r><span class="letra">B</span>ante la Administración</span>
+        <span class="r" data-r><span class="letra">C</span>ante las Cortes Generales</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ LO QUE APRENDERÁS ============ -->
+<section id="aprende" data-explorar="Lo que aprenderás">
+  <div class="envoltorio">
+    <div class="cabecera">
+      <p class="hud aparece"><b>Si me sigues</b></p>
+      <h2 class="tit aparece" style="--i:1">Lo que vas a aprender</h2>
+      <p class="aparece" style="--i:2">Una idea por publicación, con mi pantalla y mi voz. <b>Sin anuncios.</b></p>
+    </div>
+    <div class="aprende">
+      <div class="leccion"><span class="chk"><svg viewBox="0 0 16 16"><path d="M3 8.5l3 3 7-7"/></svg></span><div><strong>Pedir bien a la IA</strong><span>Prompts que uso yo, con captura limpia.</span></div></div>
+      <div class="leccion"><span class="chk"><svg viewBox="0 0 16 16"><path d="M3 8.5l3 3 7-7"/></svg></span><div><strong>Sacar test de tu temario</strong><span>Antes de leer, test. Y que la IA te corrija.</span></div></div>
+      <div class="leccion"><span class="chk"><svg viewBox="0 0 16 16"><path d="M3 8.5l3 3 7-7"/></svg></span><div><strong>No fiarte a ciegas</strong><span>Cómo comprobar lo importante en la fuente oficial.</span></div></div>
+      <div class="leccion"><span class="chk"><svg viewBox="0 0 16 16"><path d="M3 8.5l3 3 7-7"/></svg></span><div><strong>Organizar tu estudio</strong><span>Planning a rajatabla, aunque tengas 3 horas al día.</span></div></div>
+      <div class="leccion"><span class="chk"><svg viewBox="0 0 16 16"><path d="M3 8.5l3 3 7-7"/></svg></span><div><strong>Automatizar lo tedioso</strong><span>En el estudio, en el trabajo y en tu día a día.</span></div></div>
+      <div class="leccion"><span class="chk"><svg viewBox="0 0 16 16"><path d="M3 8.5l3 3 7-7"/></svg></span><div><strong>Crear tu propia herramienta</strong><span>Cómo hago mis apps sin ser programador de carrera.</span></div></div>
+    </div>
+
+    <div class="trans">
+      <div class="pantalla-v marco aparece">
+        <video id="trailer" src="assets/trailer.mp4" poster="assets/poster.png" muted loop playsinline preload="none" aria-label="Tráiler de la cuenta @parrilla_opos"></video>
+        <div class="pie"><span class="hud"><span class="led"></span>Tráiler · 54 s</span><button type="button" id="sonido">Sonido</button></div>
+      </div>
+      <div>
+        <div class="laminas aparece" style="--i:1">
+          <img src="assets/lamina-01.png" alt="Carrusel: estudia un vídeo largo sin verlo, lámina 1" loading="lazy">
+          <img src="assets/lamina-02.png" alt="Lámina 2 del carrusel" loading="lazy">
+          <img src="assets/lamina-06.png" alt="Lámina 6 del carrusel" loading="lazy">
+          <img src="assets/lamina-07.png" alt="Lámina 7 del carrusel" loading="lazy">
+          <img src="assets/lamina-11.png" alt="Lámina 11 del carrusel" loading="lazy">
+        </div>
+        <div class="redes">
+          <a class="red marco aparece" href="https://www.instagram.com/parrilla_opos/" target="_blank" rel="noopener"><span>Instagram<small>@parrilla_opos</small></span><svg viewBox="0 0 24 24" fill="none" stroke-width="2.4"><path d="M7 17L17 7M9 7h8v8"/></svg></a>
+          <a class="red marco aparece" style="--i:1" href="https://www.tiktok.com/@parrilla_opos" target="_blank" rel="noopener"><span>TikTok<small>@parrilla_opos</small></span><svg viewBox="0 0 24 24" fill="none" stroke-width="2.4"><path d="M7 17L17 7M9 7h8v8"/></svg></a>
+          <a class="red marco aparece" style="--i:2" href="https://x.com/parrilla_opos" target="_blank" rel="noopener"><span>X<small>@parrilla_opos</small></span><svg viewBox="0 0 24 24" fill="none" stroke-width="2.4"><path d="M7 17L17 7M9 7h8v8"/></svg></a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ REGISTRO ============ -->
+<section id="registro" data-explorar="Mi historia">
+  <div class="envoltorio">
+    <div class="cabecera">
+      <p class="hud aparece"><b>Registro</b></p>
+      <h2 class="tit aparece" style="--i:1">De opositor a construir con IA</h2>
+    </div>
+    <div class="registro" id="linea">
+      <span class="progreso" id="progreso"></span>
+      <div class="hito aparece"><p class="hud">Entrada 1</p><h3 class="tit">El ejército</h3><p>De ahí saqué la disciplina que luego me hizo falta para opositar.</p></div>
+      <div class="hito aparece"><p class="hud">Entrada 2</p><h3 class="tit">Opositar</h3><p>Un año opositando. Planning a rajatabla, 3 horas al día. En verano, más de 14.</p>
+        <blockquote>«Si lees sin haber hecho test, estás leyendo en vacío.»</blockquote></div>
+      <div class="hito aparece"><p class="hud">Entrada 3</p><h3 class="tit">Aprobé</h3><p>A base de muchos test. Todo está en la cabeza: constancia, motivación y esfuerzo.</p></div>
+      <div class="hito aparece"><p class="hud"><b>Ahora</b></p><h3 class="tit">Construyo con IA</h3><p>Herramientas para opositores, apps para mi día a día, y lo cuento todo en abierto.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CONTACTO ============ -->
+<section class="canal" id="canal" data-explorar="Contacto">
+  <div class="anillos" aria-hidden="true"><i></i><i></i><i></i></div>
+  <div class="envoltorio">
+    <div class="cabecera">
+      <p class="hud"><span class="led"></span><b>Canal abierto</b></p>
+      <h2 class="tit">¿Qué quieres <span>crear?</span></h2>
+      <p>Cuéntamelo en una frase. Te digo cómo lo haría yo con IA.</p>
+    </div>
+
+    <div class="constructor marco aparece">
+      <div class="paso">
+        <p class="hud">1 · <b>Elige</b></p>
+        <div class="opciones" id="opciones">
+          <button type="button" aria-pressed="false" data-v="una web">Una web</button>
+          <button type="button" aria-pressed="false" data-v="una app a medida">Una app</button>
+          <button type="button" aria-pressed="false" data-v="automatizar algo que hago a mano">Automatizar algo</button>
+          <button type="button" aria-pressed="false" data-v="una herramienta para opositores">Herramienta para opositores</button>
+          <button type="button" aria-pressed="false" data-v="colaborar en contenido">Colaborar en contenido</button>
+        </div>
+      </div>
+      <div class="paso">
+        <label class="hud" for="idea">2 · <b>En una frase</b></label>
+        <input id="idea" type="text" maxlength="160" placeholder="Por ejemplo: que las facturas que me llegan se ordenen solas" autocomplete="off">
+      </div>
+      <div class="paso">
+        <p class="hud">3 · <b>Envíalo</b></p>
+        <div class="mensaje vacio" id="mensaje">elige una opción y escribe tu idea</div>
+        <div class="enviar">
+          <a class="boton" data-enviar href="https://ig.me/m/parrilla_opos" target="_blank" rel="noopener">Copiar y abrir Instagram
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6"><path d="M7 17L17 7M9 7h8v8"/></svg></a>
+          <a class="boton fantasma" data-enviar href="https://www.tiktok.com/@parrilla_opos" target="_blank" rel="noopener">TikTok</a>
+          <a class="boton fantasma" data-enviar href="https://x.com/parrilla_opos" target="_blank" rel="noopener">X</a>
+          <a class="boton fantasma" data-enviar data-correo href="mailto:parrilla38g@gmail.com">Correo</a>
+          <span class="copiado" id="copiado">Copiado · pégalo en el chat</span>
+        </div>
+      </div>
+      <p class="correo-linea">¿Prefieres correo? <a data-enviar data-correo href="mailto:parrilla38g@gmail.com">parrilla38g@gmail.com</a></p>
+    </div>
+
+    <div class="promesa">
+      <div class="aparece"><b>Te leo yo</b>No es un bot. Contesto en cuanto puedo.</div>
+      <div class="aparece" style="--i:1"><b>Sin compromiso</b>Preguntar no te ata a nada.</div>
+      <div class="aparece" style="--i:2"><b>Ideas a la vista</b>Si tu duda sirve a más gente, sale en un vídeo, sin tu nombre.</div>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="envoltorio">
+    <span>Jesús · @parrilla_opos · <a href="mailto:parrilla38g@gmail.com">parrilla38g@gmail.com</a></span>
+    <span><a href="#">Aviso legal</a> · <a href="#">Privacidad</a></span>
+  </div>
+</footer>
+
+
+<script>
+const calma = matchMedia('(prefers-reduced-motion: reduce)').matches;
+const $ = (s) => document.querySelector(s), $$ = (s) => [...document.querySelectorAll(s)];
+const espera = (ms) => new Promise((r) => setTimeout(r, ms));
+// Repite una animación mientras el elemento está a la vista (y la para al salir)
+function mientrasSeVea(el, ciclo, umbral = .3){
+  const estado = { visible: false, corriendo: false };
+  async function arrancar(){ if (estado.corriendo) return; estado.corriendo = true; try { await ciclo(estado); } finally { estado.corriendo = false; } }
+  new IntersectionObserver(([e]) => { estado.visible = e.isIntersecting; if (estado.visible) arrancar(); }, { threshold: umbral }).observe(el);
+}
+
+/* ---------- Arranque ---------- */
+const arranque = $('#arranque');
+function quitarArranque(){ arranque.classList.add('fuera'); sessionStorage.setItem('arranque', '1'); iniciarHero(); }
+if (sessionStorage.getItem('arranque') || calma) { arranque.remove(); iniciarHero(); }
+else { arranque.addEventListener('click', quitarArranque, { once: true }); setTimeout(() => { if (!arranque.classList.contains('fuera')) quitarArranque(); }, 1450); }
+
+/* ---------- Texto que se descifra ---------- */
+const SIGNOS = 'ABCDEFGHIJKLMNÑOPQRSTUVWXYZ0123456789#%&';
+function descifrar(el, retraso = 0){
+  const final = el.dataset.final;
+  if (calma) { el.textContent = final; return Promise.resolve(); }
+  return new Promise((ok) => setTimeout(() => {
+    let f = 0; const total = final.length * 2.2 + 8;
+    const t = setInterval(() => {
+      el.textContent = [...final].map((c, i) => c === ' ' ? ' ' : (i < (f - 8) / 2.2 ? c : SIGNOS[Math.random() * SIGNOS.length | 0])).join('');
+      if (++f > total) { clearInterval(t); el.textContent = final; ok(); }
+    }, 28);
+  }, retraso));
+}
+let heroIniciado = false;
+async function iniciarHero(){
+  if (heroIniciado) return; heroIniciado = true;
+  const partes = $$('[data-cifra]'); partes.forEach((p) => { p.dataset.final = p.textContent; });
+  await Promise.all(partes.map((p, i) => descifrar(p, i * 170)));
+  await espera(150); $('#tachar').classList.add('si');
+}
+
+async function escribir(el, txt, vel = 26){
+  if (calma) { el.textContent = txt; return; }
+  el.textContent = '';
+  for (const c of txt) { el.textContent += c; await espera(vel + Math.random() * 30); }
+}
+
+/* ---------- Copiloto de estudio: foto → esquema → test → repaso → plan ---------- */
+(function copiloto(){
+  const caja = $('#copiloto'), etapas = $$('#copiloto .etapa'), botones = $$('#etapas-nav button'), prog = $('#prog-e');
+  const DUR = 3600; let i = 0, t0 = performance.now(), pausa = false, tGiro;
+  function ir(n){
+    i = (n + etapas.length) % etapas.length; t0 = performance.now();
+    etapas.forEach((e, k) => { e.classList.remove('on', 'girada'); if (k === i) { void e.offsetWidth; e.classList.add('on'); } });
+    botones.forEach((b, k) => { b.classList.toggle('on', k === i); b.classList.toggle('hecha', k < i); });
+    clearTimeout(tGiro);
+    if (etapas[i].classList.contains('e-tarjeta')) tGiro = setTimeout(() => etapas[i].classList.add('girada'), calma ? 0 : 1300);
+  }
+  botones.forEach((b, k) => b.addEventListener('click', () => ir(k)));
+  // Al pasar el ratón se para, para poder mirarlo con calma
+  caja.addEventListener('pointerenter', (e) => { if (e.pointerType === 'mouse') pausa = true; });
+  caja.addEventListener('pointerleave', () => { if (!pausa) return; pausa = false; t0 = performance.now() - (parseFloat(prog.style.width) || 0) / 100 * DUR; });
+  ir(0);
+  if (calma) return;
+  (function bucle(ahora){
+    if (!pausa) { const p = (ahora - t0) / DUR; prog.style.width = Math.min(100, p * 100) + '%'; if (p >= 1) ir(i + 1); }
+    requestAnimationFrame(bucle);
+  })(performance.now());
+})();
+
+/* ---------- Red neuronal del hero ---------- */
+(function red(){
+  const cv = $('#red'), g = cv.getContext('2d');
+  let W, H, puntos = [], raton = { x: -999, y: -999 }, vivo = true; const dpr = Math.min(devicePixelRatio || 1, 2);
+  const acento = () => getComputedStyle(document.documentElement).getPropertyValue('--ac-rgb').trim();
+  function medir(){
+    W = cv.clientWidth; H = cv.clientHeight; cv.width = W * dpr; cv.height = H * dpr; g.setTransform(dpr, 0, 0, dpr, 0, 0);
+    const n = Math.round(Math.min(90, W * H / 16000));
+    puntos = Array.from({ length: n }, () => ({ x: Math.random() * W, y: Math.random() * H, vx: (Math.random() - .5) * .25, vy: (Math.random() - .5) * .25, r: Math.random() < .12 ? 2.4 : 1.4 }));
+  }
+  function pintar(){
+    const ac = acento(); g.clearRect(0, 0, W, H);
+    for (const p of puntos) {
+      if (!calma) { p.x += p.vx; p.y += p.vy; if (p.x < 0 || p.x > W) p.vx *= -1; if (p.y < 0 || p.y > H) p.vy *= -1; }
+      const dx = p.x - raton.x, dy = p.y - raton.y, d = Math.hypot(dx, dy);
+      if (d < 120 && d > 0 && !calma) { p.x += dx / d * .6; p.y += dy / d * .6; }
+    }
+    for (let i = 0; i < puntos.length; i++) for (let j = i + 1; j < puntos.length; j++) {
+      const a = puntos[i], b = puntos[j], d = Math.hypot(a.x - b.x, a.y - b.y);
+      if (d < 130) { g.strokeStyle = `rgba(${ac},${(1 - d / 130) * .22})`; g.lineWidth = 1; g.beginPath(); g.moveTo(a.x, a.y); g.lineTo(b.x, b.y); g.stroke(); }
+    }
+    for (const p of puntos) {
+      const d = Math.hypot(p.x - raton.x, p.y - raton.y);
+      if (d < 180) { g.strokeStyle = `rgba(255,214,10,${(1 - d / 180) * .5})`; g.beginPath(); g.moveTo(p.x, p.y); g.lineTo(raton.x, raton.y); g.stroke(); }
+      g.fillStyle = p.r > 2 ? `rgba(${ac},.9)` : 'rgba(250,247,230,.35)';
+      g.beginPath(); g.arc(p.x, p.y, p.r, 0, Math.PI * 2); g.fill();
+    }
+    if (vivo && !calma) requestAnimationFrame(pintar);
+  }
+  medir(); pintar();
+  addEventListener('resize', () => { medir(); if (calma) pintar(); });
+  cv.parentElement.addEventListener('pointermove', (e) => { const r = cv.getBoundingClientRect(); raton = { x: e.clientX - r.left, y: e.clientY - r.top }; });
+  cv.parentElement.addEventListener('pointerleave', () => { raton = { x: -999, y: -999 }; });
+  new IntersectionObserver(([e]) => { const antes = vivo; vivo = e.isIntersecting; if (vivo && !antes && !calma) pintar(); }).observe(cv);
+})();
+
+addEventListener('pointermove', (e) => {
+  document.documentElement.style.setProperty('--mx', e.clientX + 'px');
+  document.documentElement.style.setProperty('--my', e.clientY + 'px');
+}, { passive: true });
+
+/* ---------- Apariciones ---------- */
+const io = new IntersectionObserver((es) => es.forEach((e) => {
+  if (!e.isIntersecting) return; e.target.classList.add('dentro'); io.unobserve(e.target);
+}), { threshold: .15, rootMargin: '0px 0px -8% 0px' });
+$$('.aparece,.navegador,.telefono,.servicio,.leccion').forEach((el) => io.observe(el));
+if (calma) $$('.aparece,.navegador,.telefono,.servicio,.leccion').forEach((el) => el.classList.add('dentro'));
+
+/* ---------- Exploración: contador, índice del hero y aviso ---------- */
+(function explorar(){
+  const secciones = $$('[data-explorar]'), total = secciones.length, vistas = new Set();
+  const cuenta = $('#cuenta'), pista = $('#pista'), quedan = $('#quedan'), aviso = $('#aviso'), exp = $('#explorado');
+  cuenta.textContent = `0/${total}`; quedan.textContent = `${total} secciones por descubrir`;
+  let tAviso;
+  const avisar = (txt) => { aviso.textContent = txt; aviso.classList.add('ver'); clearTimeout(tAviso); tAviso = setTimeout(() => aviso.classList.remove('ver'), 1800); };
+  // Cuenta una sección cuando cruza la franja central de la pantalla (sirve también para las muy altas)
+  const obs = new IntersectionObserver((es) => es.forEach((e) => {
+    if (!e.isIntersecting || vistas.has(e.target.id)) return;
+    vistas.add(e.target.id);
+    const n = vistas.size;
+    cuenta.textContent = `${n}/${total}`; pista.style.width = (n / total * 100) + '%';
+    quedan.textContent = n === total ? 'lo has visto todo' : `${total - n} por descubrir`;
+    $$(`#indice a[data-ir="${e.target.id}"]`).forEach((a) => a.classList.add('visto'));
+    if (n === total) { exp.classList.add('completo'); avisar('Lo has visto todo · ¿hablamos?'); }
+    else avisar(`Desbloqueado · ${e.target.dataset.explorar} · ${n}/${total}`);
+  }), { rootMargin: '-45% 0px -45% 0px' });
+  secciones.forEach((s) => obs.observe(s));
+})();
+
+/* ---------- Planificador: demo con cursor (formulario → plan) ---------- */
+(function demoPlan(){
+  const caja = $('#demo-plan'), a = $('#plan-a'), b = $('#plan-b'), cur = $('#cursor'), pd1 = $('#pd1'), pd2 = $('#pd2'), pant = caja.querySelector('.pantalla');
+  // Posición del botón «Móntalo ya» en la captura (px a 1280 de ancho)
+  const BOTON = { x: 290, y: 838 };
+  mientrasSeVea(caja, async (st) => {
+    await Promise.all([a.decode().catch(() => {}), b.decode().catch(() => {})]);
+    while (st.visible) {
+      const w = pant.clientWidth, H = pant.clientHeight, k = w / 1280, yBoton = BOTON.y * k, desp = Math.max(0, yBoton - H * .62);
+      caja.classList.remove('plan'); pd1.classList.add('on'); pd2.classList.remove('on');
+      b.style.transition = 'none'; b.style.transform = 'translateY(0)';
+      a.style.transition = 'transform 1.2s cubic-bezier(.22,1,.36,1)'; a.style.transform = 'translateY(0)';
+      cur.style.opacity = 1; cur.style.left = '78%'; cur.style.top = '82%';
+      await espera(calma ? 0 : 1000); a.style.transform = `translateY(${-desp}px)`;
+      await espera(calma ? 0 : 1300); cur.style.left = `${BOTON.x * k}px`; cur.style.top = `${yBoton - desp}px`;
+      await espera(calma ? 0 : 1100); cur.classList.remove('pulsa'); void cur.offsetWidth; cur.classList.add('pulsa');
+      await espera(calma ? 0 : 450);
+      caja.classList.add('plan'); pd1.classList.remove('on'); pd2.classList.add('on'); cur.style.opacity = 0;
+      if (calma) return;
+      await espera(900);
+      b.style.transition = 'transform 10s ease-in-out'; b.style.transform = `translateY(${-(b.offsetHeight - H)}px)`;
+      await espera(11500);
+      b.style.transition = 'transform 1.4s cubic-bezier(.22,1,.36,1)'; b.style.transform = 'translateY(0)';
+      await espera(2000);
+    }
+  });
+})();
+
+/* ---------- Mi día a día: reloj → iPhone ---------- */
+(function escena(){
+  const es = $('#escena'), reloj = $('#reloj'), bruto = $('#bruto'), est = $('#estado-nota'), hud = $('#paso-hud'), pasos = $$('#paso-txt li');
+  const fijar = (n, txt) => { es.dataset.paso = n; hud.innerHTML = txt; pasos.forEach((l, i) => l.classList.toggle('on', i <= n)); };
+  mientrasSeVea(es, async (st) => {
+    while (st.visible) {
+      fijar(0, 'Reloj · <b>resumen del día</b>'); reloj.classList.remove('grabando'); bruto.textContent = ''; est.textContent = 'esperando';
+      await espera(calma ? 0 : 2600);
+      fijar(1, 'Reloj · <b>grabando</b>'); reloj.classList.add('grabando');
+      await espera(calma ? 0 : 2600);
+      reloj.classList.remove('grabando'); fijar(2, 'Transcribiendo · <b>Whisper</b>'); est.textContent = 'transcrita';
+      await escribir(bruto, 'mañana llamar al taller y repasar el tema cinco', 22);
+      await espera(calma ? 0 : 600); fijar(3, 'IA · <b>ordenando</b>');
+      if (calma) return;
+      await espera(4500);
+    }
+  });
+})();
+
+/* ---------- Parra OS: un cerebro de neuronas conectado a todos los proyectos ---------- */
+(function cerebro(){
+  const cv = $('#cerebro'), g = cv.getContext('2d'), ayuda = $('#cerebro-ayuda'), dpr = Math.min(devicePixelRatio || 1, 2);
+  const HUBS = [
+    { n: 'Coposita', d: 'web de herramientas gratis' }, { n: 'Planificador', d: 'tu plan de estudio, gratis' },
+    { n: 'Copositor', d: 'una partida al día con tu temario' }, { n: 'Valdeza', d: 'la app de la academia' },
+    { n: 'Parra iOS', d: 'mi app del iPhone' }, { n: 'Reloj', d: 'mi app del Amazfit' },
+    { n: 'Robot', d: 'mi asistente al que le hablo' }, { n: 'Contenido', d: 'Instagram, TikTok y X' },
+    { n: 'Agenda', d: 'mi día a día' }, { n: 'Notas de voz', d: 'se transcriben y se ordenan solas' },
+    { n: 'Documentos', d: 'todo indexado y con su fuente' }, { n: 'Agentes IA', d: 'Claude, Cursor y Codex' },
+  ];
+  const AYUDA = 'Pasa el ratón (o el dedo) por un nodo';
+  let W, H, cx, cy, R, peq, lobulos = [], enlaces = [], hubs = [], satelites = [], pulsos = [];
+  let foco = -1, manual = false, vivo = false, t = 0;
+  const azar = (a, b) => a + Math.random() * (b - a);
+
+  function medir(){
+    W = cv.clientWidth; H = cv.clientHeight; cv.width = W * dpr; cv.height = H * dpr; g.setTransform(dpr, 0, 0, dpr, 0, 0);
+    cx = W / 2; cy = H / 2; peq = W < 600; R = Math.min(W, H) * (peq ? .2 : .22);
+    // El cerebro: dos lóbulos hechos de neuronas
+    lobulos = [];
+    const n = peq ? 90 : 150, borde = peq ? 18 : 28;
+    const meter = (px, py) => lobulos.push({ x: px, y: py, bx: px, by: py, f: azar(0, 6.28) });
+    for (const lado of [-1, 1]) {
+      const ox = cx + lado * R * .5;
+      // contorno de cada lóbulo (se ve la forma del cerebro)
+      for (let k = 0; k < borde; k++) { const a = k / borde * 6.28; meter(ox + Math.cos(a) * R * .5, cy + Math.sin(a) * R * .74); }
+      // interior
+      for (let k = 0; k < n / 2; k++) { let x, y; do { x = azar(-1, 1); y = azar(-1, 1); } while (x * x + y * y > .85); meter(ox + x * R * .5, cy + y * R * .74); }
+    }
+    enlaces = [];
+    lobulos.forEach((a, i) => {
+      lobulos.map((b, j) => [j, Math.hypot(a.x - b.x, a.y - b.y)]).filter((d) => d[0] !== i)
+        .sort((u, v) => u[1] - v[1]).slice(0, 3).forEach(([j]) => { if (i < j) enlaces.push([i, j]); });
+    });
+    // Los proyectos, en anillo alrededor
+    const rx = W * (peq ? .33 : .36), ry = H * (peq ? .41 : .4);
+    hubs = HUBS.map((h, k) => { const a = k / HUBS.length * Math.PI * 2 - Math.PI / 2; return { ...h, x: cx + Math.cos(a) * rx, y: cy + Math.sin(a) * ry }; });
+    hubs.forEach((h) => { h.ancla = lobulos.map((p, i) => [i, Math.hypot(p.x - h.x, p.y - h.y)]).sort((u, v) => u[1] - v[1]).slice(0, 2).map((d) => d[0]); });
+    // Neuronas pequeñas alrededor de cada proyecto
+    satelites = [];
+    hubs.forEach((h, k) => { for (let m = 0; m < (peq ? 5 : 9); m++) { const a = azar(0, 6.28), d = azar(14, peq ? 30 : 48); satelites.push({ x: h.x + Math.cos(a) * d, y: h.y + Math.sin(a) * d, h: k }); } });
+  }
+
+  function lanzar(){
+    const k = Math.random() * hubs.length | 0, h = hubs[k], p = lobulos[h.ancla[0]], ida = Math.random() < .5;
+    pulsos.push({ x0: ida ? p.x : h.x, y0: ida ? p.y : h.y, x1: ida ? h.x : p.x, y1: ida ? h.y : p.y, t: 0, v: azar(.008, .016), c: Math.random() < .25 ? '255,214,10' : null });
+    if (Math.random() < .3) { const h2 = hubs[(k + 1) % hubs.length]; pulsos.push({ x0: h.x, y0: h.y, x1: h2.x, y1: h2.y, t: 0, v: azar(.006, .012), c: null }); }
+  }
+
+  function pintar(){
+    const ac = getComputedStyle(document.documentElement).getPropertyValue('--ac-rgb').trim();
+    t++; g.clearRect(0, 0, W, H);
+    if (!calma) lobulos.forEach((p) => { p.x = p.bx + Math.sin(t * .02 + p.f) * 1.3; p.y = p.by + Math.cos(t * .017 + p.f) * 1.3; });
+    g.lineWidth = 1;
+    // anillo entre proyectos
+    hubs.forEach((h, k) => { const h2 = hubs[(k + 1) % hubs.length]; g.strokeStyle = 'rgba(250,247,230,.07)'; g.beginPath(); g.moveTo(h.x, h.y); g.lineTo(h2.x, h2.y); g.stroke(); });
+    // proyecto ↔ cerebro
+    hubs.forEach((h, k) => {
+      const on = foco === k;
+      h.ancla.forEach((i) => {
+        const p = lobulos[i]; g.strokeStyle = on ? `rgba(${ac},.9)` : `rgba(${ac},.2)`; g.lineWidth = on ? 1.8 : 1;
+        g.beginPath(); g.moveTo(h.x, h.y); g.quadraticCurveTo((h.x + p.x) / 2 + (cy - h.y) * .08, (h.y + p.y) / 2 + (h.x - cx) * .08, p.x, p.y); g.stroke();
+      });
+    });
+    g.lineWidth = 1;
+    // neuronas satélite
+    satelites.forEach((s) => {
+      const h = hubs[s.h], on = foco === s.h;
+      g.strokeStyle = on ? `rgba(${ac},.55)` : 'rgba(250,247,230,.08)'; g.beginPath(); g.moveTo(s.x, s.y); g.lineTo(h.x, h.y); g.stroke();
+      g.fillStyle = on ? `rgba(${ac},.95)` : 'rgba(250,247,230,.3)'; g.beginPath(); g.arc(s.x, s.y, 1.6, 0, 6.28); g.fill();
+    });
+    // el cerebro
+    enlaces.forEach(([i, j]) => { const a = lobulos[i], b = lobulos[j]; g.strokeStyle = `rgba(${ac},.3)`; g.beginPath(); g.moveTo(a.x, a.y); g.lineTo(b.x, b.y); g.stroke(); });
+    lobulos.forEach((p) => { g.fillStyle = `rgba(${ac},${.45 + .45 * Math.sin(t * .05 + p.f)})`; g.beginPath(); g.arc(p.x, p.y, 1.9, 0, 6.28); g.fill(); });
+    // impulsos que viajan
+    if (calma ? false : t % 7 === 0) lanzar();
+    pulsos = pulsos.filter((q) => q.t <= 1);
+    pulsos.forEach((q) => {
+      if (!calma) q.t += q.v;
+      const x = q.x0 + (q.x1 - q.x0) * q.t, y = q.y0 + (q.y1 - q.y0) * q.t, col = q.c || ac;
+      g.fillStyle = `rgba(${col},1)`; g.shadowColor = `rgba(${col},.9)`; g.shadowBlur = 10;
+      g.beginPath(); g.arc(x, y, 2.4, 0, 6.28); g.fill(); g.shadowBlur = 0;
+    });
+    // proyectos y sus nombres
+    g.font = `700 ${peq ? 10.5 : 12.5}px "Schibsted Grotesk", system-ui, sans-serif`; g.textBaseline = 'middle';
+    hubs.forEach((h, k) => {
+      const on = foco === k, centro = Math.abs(h.x - cx) < 8, izq = h.x < cx;
+      g.fillStyle = '#0A0D0B'; g.strokeStyle = on ? '#FFD60A' : `rgba(${ac},.95)`; g.lineWidth = on ? 2.5 : 1.5;
+      g.beginPath(); g.arc(h.x, h.y, on ? 9 : 6.5, 0, 6.28); g.fill(); g.stroke(); g.lineWidth = 1;
+      g.textAlign = centro ? 'center' : (izq ? 'right' : 'left');
+      g.fillStyle = on ? '#FFD60A' : 'rgba(250,247,230,.92)';
+      const tx = h.x + (centro ? 0 : (izq ? -15 : 15)), ancho = g.measureText(h.n.toUpperCase()).width;
+      const txs = centro ? tx : (izq ? Math.max(tx, ancho + 6) : Math.min(tx, W - ancho - 6));
+      g.fillText(h.n.toUpperCase(), txs, h.y + (centro ? (h.y < cy ? -18 : 18) : 0));
+    });
+    g.textAlign = 'center'; g.fillStyle = 'rgba(250,247,230,.96)';
+    g.font = `800 ${peq ? 14 : 17}px "Bricolage Grotesque", system-ui, sans-serif`;
+    g.fillText('PARRA OS', cx, cy + R * .74 + (peq ? 16 : 22));
+    if (vivo && !calma) requestAnimationFrame(pintar);
+  }
+
+  function enfocar(k){
+    foco = k;
+    ayuda.innerHTML = k < 0 ? AYUDA : `<b>${hubs[k].n}</b> · ${hubs[k].d}`;
+    if (calma) pintar();
+  }
+  function buscar(e){
+    const r = cv.getBoundingClientRect(), x = e.clientX - r.left, y = e.clientY - r.top;
+    let mejor = -1, dm = peq ? 34 : 46;
+    hubs.forEach((h, k) => { const d = Math.hypot(h.x - x, h.y - y); if (d < dm) { dm = d; mejor = k; } });
+    if (mejor >= 0) manual = true;
+    if (mejor !== foco && (mejor >= 0 || e.type === 'pointermove')) enfocar(mejor);
+  }
+  medir(); ayuda.textContent = AYUDA;
+  if (calma) { for (let k = 0; k < 24; k++) { lanzar(); pulsos[pulsos.length - 1].t = Math.random(); } pintar(); }
+  addEventListener('resize', () => { medir(); if (calma) pintar(); });
+  cv.addEventListener('pointermove', buscar);
+  cv.addEventListener('pointerdown', buscar);
+  cv.addEventListener('pointerleave', () => { manual = false; enfocar(-1); });
+  // Si nadie toca, el cerebro va enseñando sus conexiones uno a uno
+  setInterval(() => { if (!manual && vivo) enfocar((foco + 1) % hubs.length); }, 2400);
+  new IntersectionObserver(([e]) => { const antes = vivo; vivo = e.isIntersecting; if (vivo && !antes && !calma) pintar(); }).observe(cv);
+})();
+
+/* ---------- Robot: conversación de ejemplo ---------- */
+(function robot(){
+  const r = $('#robot'), chat = $('#chat');
+  const CHARLAS = [
+    ['¿Qué tengo hoy?', 'Tres cosas: el test del tema 1, llamar al taller y revisar los cambios de Coposita.'],
+    ['Apúntame repasar el tema 5 mañana por la tarde.', 'Hecho. Lo tienes en la agenda a las 18:00 y te aviso en el reloj.'],
+    ['¿Hay algo nuevo en mis proyectos?', 'Coposita tiene dos cambios nuevos. Copositor sigue igual que ayer.'],
+  ];
+  const burbuja = (clase) => { const b = document.createElement('p'); b.className = 'burbuja ' + clase; chat.append(b); requestAnimationFrame(() => b.classList.add('ver')); return b; };
+  let i = 0;
+  mientrasSeVea(r, async (st) => {
+    while (st.visible) {
+      const [yo, bot] = CHARLAS[i % CHARLAS.length]; chat.innerHTML = '';
+      r.classList.add('escucha'); await escribir(burbuja('yo'), yo, 18);
+      await espera(calma ? 0 : 500); r.classList.remove('escucha');
+      r.classList.add('habla'); await escribir(burbuja('bot'), bot, 14); r.classList.remove('habla');
+      if (calma) return;
+      await espera(3500); i++;
+    }
+  });
+})();
+
+/* ---------- Escáner de temario ---------- */
+(function escaner(){
+  const hoja = $('#hoja'), claves = $$('.hoja .clave'), rs = $$('[data-r]');
+  mientrasSeVea($('#escaner'), async (st) => {
+    while (st.visible) {
+      hoja.classList.remove('lee'); claves.forEach((c) => c.classList.remove('on')); rs.forEach((r) => r.classList.remove('ver', 'bien'));
+      await espera(400); void hoja.offsetWidth; hoja.classList.add('lee');
+      for (const c of claves) { await espera(calma ? 0 : 550); c.classList.add('on'); }
+      await espera(calma ? 0 : 500);
+      for (const r of rs) { await espera(calma ? 0 : 300); r.classList.add('ver'); }
+      await espera(calma ? 0 : 700); rs[0].classList.add('bien');
+      if (calma) return;
+      await espera(4500);
+    }
+  }, .35);
+})();
+
+/* ---------- Inclinación 3D de las webs al pasar el ratón ---------- */
+$$('.inclina').forEach((el) => {
+  el.addEventListener('pointermove', (e) => {
+    if (calma || e.pointerType !== 'mouse') return;
+    const r = el.getBoundingClientRect(), x = (e.clientX - r.left) / r.width - .5, y = (e.clientY - r.top) / r.height - .5;
+    el.style.setProperty('--ry', `${x * 8}deg`); el.style.setProperty('--rx', `${-y * 6}deg`);
+  });
+  el.addEventListener('pointerleave', () => { el.style.removeProperty('--ry'); el.style.removeProperty('--rx'); });
+});
+
+/* ---------- Tráiler ---------- */
+const v = $('#trailer'), bs = $('#sonido');
+new IntersectionObserver(([e]) => { if (e.isIntersecting && !calma) v.play().catch(() => {}); else v.pause(); }, { threshold: .4 }).observe(v);
+bs.addEventListener('click', () => { v.muted = !v.muted; bs.textContent = v.muted ? 'Sonido' : 'Silenciar'; if (!v.muted) v.play(); });
+
+/* ---------- Scroll: barra de progreso, línea del registro y enlace activo ---------- */
+const linea = $('#linea'), prog = $('#progreso'), barra = $('#barra'), enlaces = $$('.nav-enlaces a');
+function alHacerScroll(){
+  const max = document.documentElement.scrollHeight - innerHeight;
+  barra.style.width = (scrollY / max * 100) + '%';
+  const r = linea.getBoundingClientRect(); const p = Math.min(1, Math.max(0, (innerHeight * .6 - r.top) / r.height));
+  prog.style.height = p * (r.height - 8) + 'px';
+  let activo = '';
+  for (const a of enlaces) { const s = document.getElementById(a.dataset.sec); const rr = s.getBoundingClientRect(); if (rr.top < innerHeight * .5 && rr.bottom > innerHeight * .5) activo = a.dataset.sec; }
+  enlaces.forEach((a) => a.classList.toggle('activo', a.dataset.sec === activo));
+}
+addEventListener('scroll', alHacerScroll, { passive: true }); alHacerScroll();
+
+/* ---------- Contacto: constructor de mensaje ---------- */
+(function contacto(){
+  const botones = $$('#opciones button'), idea = $('#idea'), msj = $('#mensaje'), copiado = $('#copiado');
+  let tipo = '';
+  function componer(){
+    const t = idea.value.trim();
+    if (!tipo && !t) { msj.textContent = 'elige una opción y escribe tu idea'; msj.classList.add('vacio'); return ''; }
+    const txt = `Hola Jesús, vengo de tu web. Me interesa ${tipo || 'una idea'}${t ? ': ' + t : ''}.`;
+    msj.textContent = txt; msj.classList.remove('vacio'); return txt;
+  }
+  botones.forEach((b) => b.addEventListener('click', () => {
+    const ya = b.getAttribute('aria-pressed') === 'true';
+    botones.forEach((x) => x.setAttribute('aria-pressed', 'false'));
+    b.setAttribute('aria-pressed', String(!ya)); tipo = ya ? '' : b.dataset.v; componer();
+  }));
+  idea.addEventListener('input', componer);
+  $$('[data-enviar]').forEach((a) => a.addEventListener('click', () => {
+    const txt = componer();
+    if (a.dataset.correo) { a.href = 'mailto:parrilla38g@gmail.com?subject=' + encodeURIComponent('Vengo de tu web: ' + (tipo || 'una idea')) + (txt ? '&body=' + encodeURIComponent(txt) : ''); return; }
+    if (!txt || !navigator.clipboard) return;
+    navigator.clipboard.writeText(txt).then(() => { copiado.classList.add('ver'); setTimeout(() => copiado.classList.remove('ver'), 3000); }).catch(() => {});
+  }));
+})();
+
+/* ---------- Selector de acento ---------- */
+$$('.selector button').forEach((b) => b.addEventListener('click', () => {
+  document.documentElement.dataset.acento = b.dataset.a;
+  $$('.selector button').forEach((x) => x.setAttribute('aria-pressed', x === b));
+}));
+</script>
+</body>
+</html>
