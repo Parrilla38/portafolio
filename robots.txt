@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://parrilla-opos.vercel.app/sitemap.xml
+Sitemap: https://www.parrillaopos.es/sitemap.xml
