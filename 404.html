@@ -3,25 +3,33 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Página no encontrada · @parrilla_opos</title>
+<title>Página no encontrada · Parrilla</title>
 <meta name="robots" content="noindex">
-<meta name="theme-color" content="#0A0D0B">
+<meta name="theme-color" content="#8a8d93">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="/favicon-32.png" sizes="32x32" type="image/png">
 <link rel="stylesheet" href="/legal.css">
 <style>
-.texto{min-height:calc(100svh - 65px);display:grid;align-content:center}
-.boton{display:inline-block;margin-top:26px;font:800 16px/1 "Bricolage Grotesque",sans-serif;text-transform:uppercase;text-decoration:none;color:var(--negro);background:var(--verde);padding:17px 22px;clip-path:polygon(0 0,calc(100% - 12px) 0,100% 12px,100% 100%,12px 100%,0 calc(100% - 12px))}
+.texto{min-height:calc(100svh - 140px);display:grid;align-content:center}
 .tachado{position:relative;display:inline-block}
-.tachado::after{content:"";position:absolute;left:-1%;right:-1%;top:50%;height:.11em;background:#FF3B30}
+.tachado::after{content:"";position:absolute;left:-2%;right:-2%;top:52%;height:.12em;background:var(--rojo);transform:rotate(-3deg)}
+.rojo{color:var(--rojo)}
+.boton{display:inline-block;margin-top:26px;padding:14px 20px;font:800 14px/1.1 var(--f-texto);text-transform:uppercase;letter-spacing:.05em;text-decoration:none;
+  background:var(--tinta);color:#fff;border:var(--borde) solid var(--tinta);border-radius:var(--radio);box-shadow:4px 4px 0 var(--naranja)}
+.boton:hover{background:var(--tinta);transform:translate(2px,2px);box-shadow:2px 2px 0 var(--naranja)}
 </style>
 </head>
 <body>
-<header class="cabeza"><div><a class="marca" href="/">parrilla<span>_</span>opos</a></div></header>
+<div class="hoja">
+<header class="barra">
+  <a class="marca" href="/"><i><svg viewBox="0 0 5 7" shape-rendering="crispEdges" aria-hidden="true"><path d="M0 0h4v1h-4zM0 1h1v1h-1zM4 1h1v1h-1zM0 2h1v1h-1zM4 2h1v1h-1zM0 3h4v1h-4zM0 4h1v1h-1zM0 5h1v1h-1zM0 6h1v1h-1z"/></svg></i><span>Parrilla</span></a>
+</header>
 <main class="texto">
-  <p class="hud">Error 404</p>
-  <h1>Esta página <span class="tachado">existe</span>.<br><span style="color:var(--verde)">No existe.</span></h1>
+  <span class="etiqueta">error 404</span>
+  <h1>Esta página <span class="tachado">existe</span>.<br><span class="rojo">No existe.</span></h1>
   <p>Igual el enlace estaba mal escrito o la página se movió. Lo bueno está en la portada.</p>
   <p><a class="boton" href="/">Volver a la portada</a></p>
 </main>
+</div>
 </body>
 </html>
