@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Parrilla · Esto es lo que se puede hacer con IA</title>
-<meta name="description" content="Vídeos, webs, apps, software y automatizaciones. Si te da una idea para tu vida o tu negocio, escríbeme y lo hablamos.">
+<meta name="description" content="Vídeos, webs, apps y software. Si te da una idea para tu vida o tu negocio, escríbeme y lo hablamos.">
 <link rel="canonical" href="https://www.parrillaopos.es/">
 <meta name="robots" content="index,follow">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
@@ -562,6 +562,16 @@ a.chip:hover{background:var(--limon)}
   .mini--solo .mini__media{max-width:none}
 }
 
+/* ---------- Copositor separado y Valdeza como app ---------- */
+.mini--sep,.app{margin-top:30px;padding-top:26px;border-top:2px dashed rgba(22,22,26,.35)}
+.app__cab{max-width:640px}
+.app__cab h3{font-size:clamp(1.4rem,6vw,2.2rem)}
+.app__tira{display:flex;gap:16px;overflow-x:auto;scroll-snap-type:x mandatory;list-style:none;margin:18px -4px 0;padding:6px 4px 16px;scrollbar-width:thin}
+.app__tira li{flex:0 0 auto;width:min(58vw,210px);scroll-snap-align:start}
+.app__tira img{display:block;width:100%;height:auto;border-radius:16px;box-shadow:4px 5px 0 rgba(22,22,26,.3)}
+.app__tira:focus-visible{outline:3px solid var(--tinta);outline-offset:4px}
+.app__ayuda{font-size:var(--t-xs);opacity:.75;margin-top:2px}
+
 /* ---------- Mezcla: contacto en hoja roja (A) ---------- */
 .contacto__caja{background:var(--rojo);text-align:left;padding:40px 20px 34px}
 .contacto__caja h2{font:800 clamp(2.5rem,11vw,6.4rem)/.9 var(--f-titulo);letter-spacing:-.05em;text-transform:uppercase;margin:0;max-width:none}
@@ -631,7 +641,7 @@ a.chip:hover{background:var(--limon)}
 
       <div class="titular">
         <div class="avatares">
-          <span class="av av--izq pega" style="--r:-5deg;--d:.35s"><img src="assets/yo-recorte.png" width="464" height="520" alt="Jesús, con la cara pixelada, en camiseta negra"></span>
+          <span class="av av--izq pega" style="--r:-5deg;--d:.35s"><img src="assets/yo-busto.jpg" width="464" height="520" alt="Jesús con pasamontañas negro y sudadera"></span>
           <span class="av av--der pega" style="--r:5deg;--d:.45s">
             <!-- MARCADOR: sustituir por foto real del pasamontañas -->
             <svg viewBox="0 0 100 100" role="img" aria-label="Dibujo de una cabeza con pasamontañas negro">
@@ -658,7 +668,7 @@ a.chip:hover{background:var(--limon)}
         </div>
         <h1 id="titulo">Esto es lo que se puede hacer con IA.<svg class="pegatina" viewBox="0 0 40 40" aria-hidden="true"><use href="#pegatina-ojo"/></svg><svg class="pegatina" viewBox="0 0 40 40" aria-hidden="true"><use href="#pegatina-flor"/></svg></h1>
       </div>
-      <p class="subtitulo">Vídeos, webs, apps, software y automatizaciones. Si te da una idea para tu vida o tu negocio, escríbeme y lo hablamos.</p>
+      <p class="subtitulo">Vídeos, webs, apps y software. Si te da una idea para tu vida o tu negocio, escríbeme y lo hablamos.</p>
       <div class="acciones">
         <a class="btn btn--negro" href="https://ig.me/m/parrilla_opos" rel="noopener">Escríbeme por Instagram <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17L17 7M8 7h9v9"/></svg></a>
         <a class="btn btn--papel" href="#escaparate">Ver lo que he hecho</a>
@@ -674,13 +684,13 @@ a.chip:hover{background:var(--limon)}
       <div class="mejorar__fotos">
         <figure class="polaroid pega" style="--r:-4deg;--d:.05s;margin:0">
           <span class="cinta cinta--azul" style="--rc:-8deg"></span>
-          <img src="assets/video-notebook.webp" width="540" height="960" loading="lazy" alt="Fotograma de uno de mis vídeos: «¿Y si la IA solo pudiera leer tu temario?»">
+          <img src="assets/video-empezaria.webp" width="540" height="960" loading="lazy" alt="Fotograma de uno de mis vídeos: «Si empezara hoy», con la mascota del pasamontañas">
           <figcaption>mis vídeos</figcaption>
         </figure>
         <figure class="polaroid pega" style="--r:3deg;--d:.2s;margin:0">
           <span class="cinta" style="--rc:6deg"></span>
-          <img src="assets/yo-pixelado.jpg" width="464" height="832" loading="lazy" alt="Jesús de cuerpo entero, con la cara pixelada, delante de una pared">
-          <figcaption>yo, pixelado</figcaption>
+          <img src="assets/yo-pasamontanas.jpg" width="464" height="832" loading="lazy" alt="Jesús con pasamontañas negro y sudadera, sentado a la mesa">
+          <figcaption>yo, con pasamontañas</figcaption>
         </figure>
       </div>
       <div class="mejorar__centro">
@@ -697,7 +707,6 @@ a.chip:hover{background:var(--limon)}
         <a class="etq etq--v pega" style="--r:-2deg;--d:.0s" href="#video">Vídeo</a>
         <a class="etq etq--w pega" style="--r:1.5deg;--d:.08s" href="#webs">Webs y apps</a>
         <a class="etq etq--s pega" style="--r:2deg;--d:.24s" href="#software">Software</a>
-        <a class="etq etq--x pega" style="--r:-1.5deg;--d:.32s" href="#automatizaciones">Automatizaciones</a>
       </div>
     </section>
 
@@ -706,7 +715,7 @@ a.chip:hover{background:var(--limon)}
       <div class="banda__dentro">
         <div class="banda__estrellas" aria-hidden="true"><svg class="estrella" viewBox="0 0 40 40" aria-hidden="true"><path d="M20 0C21 12 28 19 40 20C28 21 21 28 20 40C19 28 12 21 0 20C12 19 19 12 20 0Z"/></svg><svg class="estrella" viewBox="0 0 40 40" aria-hidden="true"><path d="M20 0C21 12 28 19 40 20C28 21 21 28 20 40C19 28 12 21 0 20C12 19 19 12 20 0Z"/></svg><svg class="estrella" viewBox="0 0 40 40" aria-hidden="true"><path d="M20 0C21 12 28 19 40 20C28 21 21 28 20 40C19 28 12 21 0 20C12 19 19 12 20 0Z"/></svg></div>
         <p class="banda__lema"><span>La IA no</span><span>es el problema,</span><span class="rojo">es cómo</span><span class="rojo">la usas.</span></p>
-        <figure class="banda__yo pega" style="--r:2deg"><img src="assets/yo-recorte.png" width="464" height="520" loading="lazy" alt="Jesús con la cara pixelada, recortado con borde rojo"></figure>
+        <figure class="banda__yo pega" style="--r:2deg"><img src="assets/yo-busto.jpg" width="464" height="520" loading="lazy" alt="Jesús con pasamontañas negro, con borde rojo"></figure>
         <div class="banda__bala pega" style="--r:-9deg;--d:.2s">
           <!-- MARCADOR: sustituir por foto real del pasamontañas -->
       <svg class="banda__bala-svg" viewBox="0 0 200 250" role="img" aria-label="Dibujo de un pasamontañas negro">
@@ -770,7 +779,7 @@ a.chip:hover{background:var(--limon)}
               <span class="wb__b wb__txt"></span>
               <span class="wb__b wb__btn"></span>
               <span class="wb__b wb__img"><svg viewBox="0 0 40 30"><path d="M2 28L14 12L22 22L28 16L38 28Z" fill="#16161a" opacity=".55"/><circle cx="29" cy="8" r="4" fill="#16161a" opacity=".55"/></svg></span>
-              <img class="wb__real" src="assets/web-copositor-pc.webp" width="640" height="400" loading="lazy" alt="">
+              <img class="wb__real" src="assets/web-copositor-pc-1117.webp" width="640" height="400" loading="lazy" alt="">
               <span class="wb__sello">Publicada ✓</span>
               <svg class="wb__cursor" viewBox="0 0 20 24"><path d="M2 2L2 20L7 15L10.5 22L13.5 20.6L10 13.8L17 13.8Z" fill="#16161a" stroke="#fff" stroke-width="1.6" stroke-linejoin="round"/></svg>
             </div>
@@ -833,8 +842,8 @@ a.chip:hover{background:var(--limon)}
           <div class="tarjeta__cuerpo">
             <div class="mini mini--solo">
               <div class="mini__media">
-                <div class="ventana"><div class="ventana__barra" aria-hidden="true"><i></i><i></i><i></i></div><img src="assets/web-coposita-pc.webp" width="640" height="400" loading="lazy" alt="Captura de la web Coposita en ordenador"></div>
-                <div class="telefono"><img src="assets/web-coposita-movil.webp" width="300" height="567" loading="lazy" alt="Captura de la web Coposita en móvil"></div>
+                <div class="ventana"><div class="ventana__barra" aria-hidden="true"><i></i><i></i><i></i></div><img src="assets/web-coposita-pc-1117.webp" width="640" height="400" loading="lazy" alt="Captura de la web Coposita en ordenador"></div>
+                <div class="telefono"><img src="assets/web-coposita-movil-1117.webp" width="300" height="567" loading="lazy" alt="Captura de la web Coposita en móvil"></div>
               </div>
               <div>
                 <p class="tarjeta__marca"><i></i>Web</p>
@@ -843,30 +852,35 @@ a.chip:hover{background:var(--limon)}
                 <a class="enlace" href="https://coposita.es" rel="noopener">coposita.es ↗</a>
               </div>
             </div>
-            <div class="minis minis--dos">
-              <div class="mini">
-                <div class="mini__media">
-                  <div class="ventana"><div class="ventana__barra" aria-hidden="true"><i></i><i></i><i></i></div><img src="assets/web-copositor-pc.webp" width="640" height="400" loading="lazy" alt="Captura de la web Copositor en ordenador"></div>
-                  <div class="telefono"><img src="assets/web-copositor-movil.webp" width="300" height="567" loading="lazy" alt="Captura de la web Copositor en móvil"></div>
-                </div>
-                <div>
-                  <p class="tarjeta__marca"><i></i>Web</p>
-                  <h3>Copositor</h3>
-                  <p>Un videojuego de tests para opositores: mazmorras, duelos y torneos con preguntas de tu temario. En desarrollo; la beta empieza con Guardia Civil y ya puedes apuntarte a la lista de espera.</p>
-                  <a class="enlace" href="https://copositor.es" rel="noopener">copositor.es ↗</a>
-                </div>
+            <div class="mini mini--solo mini--sep">
+              <div class="mini__media">
+                <div class="ventana"><div class="ventana__barra" aria-hidden="true"><i></i><i></i><i></i></div><img src="assets/web-copositor-pc-1117.webp" width="640" height="400" loading="lazy" alt="Captura de la web Copositor en ordenador"></div>
+                <div class="telefono"><img src="assets/web-copositor-movil-1117.webp" width="300" height="567" loading="lazy" alt="Captura de la web Copositor en móvil"></div>
               </div>
-              <div class="mini">
-                <div class="mini__media mini__media--app">
-                  <div class="movil-solo"><img src="assets/web-valdeza-movil.webp" width="300" height="567" loading="lazy" alt="Captura de la app Valdeza en el móvil"></div>
-                </div>
-                <div>
-                  <p class="tarjeta__marca"><i></i>App</p>
-                  <h3>Valdeza</h3>
-                  <p>La app para los alumnos de las academias de Baeza y Valdemoro: calendario, notas, Speaking, preparación física y torneos. En App Store y Google Play.</p>
-                  <a class="enlace" href="https://valdeza.app" rel="noopener">valdeza.app ↗</a>
-                </div>
+              <div>
+                <p class="tarjeta__marca"><i></i>Web</p>
+                <h3>Copositor</h3>
+                <p>Un videojuego de tests para opositores: mazmorras, duelos y torneos con preguntas de tu temario. En desarrollo; la beta empieza con Guardia Civil y ya puedes apuntarte a la lista de espera.</p>
+                <a class="enlace" href="https://copositor.es" rel="noopener">copositor.es ↗</a>
               </div>
+            </div>
+            <div class="app">
+              <div class="app__cab">
+                <p class="tarjeta__marca"><i></i>App para iPhone y Android</p>
+                <h3>Valdeza</h3>
+                <p>La app para los alumnos de las academias de Baeza y Valdemoro: calendario de exámenes, notas, Speaking, preparación física, gastos y apuntes. En App Store y Google Play.</p>
+                <a class="enlace" href="https://valdeza.app" rel="noopener">valdeza.app ↗</a>
+              </div>
+              <ul class="app__tira" tabindex="0" aria-label="Pantallas de la app Valdeza">
+                <li><img src="assets/valdeza-app-1.webp" width="330" height="717" loading="lazy" alt="Pantalla de Valdeza: Inicio: tu academia en un solo sitio"></li>
+                <li><img src="assets/valdeza-app-2.webp" width="330" height="717" loading="lazy" alt="Pantalla de Valdeza: Calendario de exámenes"></li>
+                <li><img src="assets/valdeza-app-3.webp" width="330" height="717" loading="lazy" alt="Pantalla de Valdeza: Notas y media del expediente"></li>
+                <li><img src="assets/valdeza-app-4.webp" width="330" height="717" loading="lazy" alt="Pantalla de Valdeza: Speaking: simulacro en voz alta"></li>
+                <li><img src="assets/valdeza-app-5.webp" width="330" height="717" loading="lazy" alt="Pantalla de Valdeza: Físico: tus marcas con nota"></li>
+                <li><img src="assets/valdeza-app-6.webp" width="330" height="717" loading="lazy" alt="Pantalla de Valdeza: Gastos del mes"></li>
+                <li><img src="assets/valdeza-app-7.webp" width="330" height="717" loading="lazy" alt="Pantalla de Valdeza: Cuaderno de apuntes"></li>
+              </ul>
+              <p class="app__ayuda" aria-hidden="true">Desliza para ver más pantallas →</p>
             </div>
           </div>
         </article>
@@ -890,21 +904,6 @@ a.chip:hover{background:var(--limon)}
                   <p class="cifra"><b data-cuenta="57">57</b><span>proyectos</span></p>
                 </div>
                 <p class="os__dato">Cifras del 07/10/2026.</p>
-              </div>
-            </div>
-          </div>
-        </article>
-
-        <article class="tarjeta tarjeta--negra" id="automatizaciones" style="--i:3;--tab:var(--naranja)">
-          <div class="tarjeta__tab">Proyecto 04 · Automatizaciones</div>
-          <div class="tarjeta__cuerpo">
-            <div class="vacio">
-              <div class="vacio__huecos" aria-hidden="true"><span></span><span></span><span></span></div>
-              <div>
-                <p class="tarjeta__marca"><i></i>Automatizaciones</p>
-                <h3>Casos en preparación</h3>
-                <p>Estoy preparando casos que pueda enseñar. Si tienes una tarea repetitiva, cuéntamela.</p>
-                <a class="enlace" href="https://ig.me/m/parrilla_opos" rel="noopener">Cuéntamela por Instagram ↗</a>
               </div>
             </div>
           </div>
