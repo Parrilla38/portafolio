@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Parrilla · Mis enlaces</title>
+<meta name="description" content="Los enlaces de Parrilla (@parrilla_opos): Coposita, el tutor 24 horas, el pack para tu oposición y mis redes.">
+<meta name="robots" content="noindex,follow">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="/favicon-32.png" sizes="32x32" type="image/png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="preload" href="assets/fuentes/bricolage-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/fuentes/schibsted-latin.woff2" as="font" type="font/woff2" crossorigin>
+<style>
+@font-face{font-family:"Bricolage Grotesque";font-weight:200 800;font-display:swap;src:url(assets/fuentes/bricolage-latin.woff2) format("woff2")}
+@font-face{font-family:"Schibsted Grotesk";font-weight:400 900;font-display:swap;src:url(assets/fuentes/schibsted-latin.woff2) format("woff2")}
+@font-face{font-family:"Bricolage Grotesque";font-weight:200 800;font-display:swap;src:url(assets/fuentes/bricolage-latin-ext.woff2) format("woff2");unicode-range:U+0100-02BA,U+1E00-1E9F}
+@font-face{font-family:"Schibsted Grotesk";font-weight:400 900;font-display:swap;src:url(assets/fuentes/schibsted-latin-ext.woff2) format("woff2");unicode-range:U+0100-02BA,U+1E00-1E9F}
+:root{--tinta:#16161a;--suave:#44464e;--papel:#fbfbf7;--renglon:#cfd6e0;--mesa:#2b6e4f;--rojo:#ff3b30;--azul:#2d5bff;--verde:#27b073;
+  --n-amarillo:#fff0a8;--n-rosa:#ffd1e3;--n-verde:#cdf3dd;--n-azul:#d5e0ff;
+  --f-t:"Bricolage Grotesque",system-ui,sans-serif;--f-x:"Schibsted Grotesk",system-ui,sans-serif;--f-m:"Segoe Print","Bradley Hand","Segoe Script",cursive}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:var(--f-x);color:var(--tinta);line-height:1.5;background:var(--mesa) radial-gradient(rgba(255,255,255,.07) 1px,transparent 1px) 0 0/18px 18px;padding:14px;min-height:100vh}
+a{color:inherit}
+.hoja{max-width:520px;margin:0 auto;background:var(--papel) repeating-linear-gradient(transparent 0 27px,var(--renglon) 27px 28px);border-radius:6px 6px 18px 18px;box-shadow:0 30px 60px -20px rgba(0,0,0,.5);position:relative;overflow:hidden}
+.hoja::before{content:"";position:absolute;top:0;bottom:0;left:22px;width:2px;background:rgba(255,59,48,.45)}
+.anillas{height:30px;background:radial-gradient(circle at 50% 60%,var(--mesa) 7px,transparent 8px) 0 0/44px 30px repeat-x;border-bottom:2px dashed rgba(0,0,0,.12)}
+.dentro{padding:26px 22px 34px 40px;position:relative}
+.yo{display:flex;align-items:center;gap:16px;margin-bottom:24px}
+.yo img{width:84px;height:84px;object-fit:cover;object-position:center 20%;border-radius:50%;border:3px solid var(--tinta);background:#fff;flex:none}
+.yo h1{font-family:var(--f-t);font-size:1.6rem;line-height:1.1;letter-spacing:-.02em}
+.yo p{color:var(--suave);font-size:1rem}
+.paso{display:flex;align-items:center;gap:10px;font-family:var(--f-t);font-weight:800;font-size:1.15rem;margin:0 0 12px}
+.paso i{font-style:normal;flex:none;width:30px;height:30px;border-radius:50%;background:var(--tinta);color:#fff;display:grid;place-items:center;font-size:1rem}
+.lista{list-style:none;display:grid;gap:14px;margin-bottom:30px}
+.enlace{display:block;text-decoration:none;border:2.5px solid var(--tinta);border-radius:14px;padding:16px 16px 14px;box-shadow:4px 4px 0 var(--tinta);transition:transform .15s,box-shadow .15s}
+.enlace:hover,.enlace:focus-visible{transform:translate(-2px,-2px);box-shadow:6px 6px 0 var(--tinta)}
+.enlace:focus-visible{outline:3px solid var(--azul);outline-offset:3px}
+.enlace b{display:block;font-family:var(--f-t);font-size:1.3rem;line-height:1.2}
+.enlace .txt{display:block;font-size:1rem;color:#2c2d33;margin-top:4px}
+.sello{display:inline-block;font-size:.8rem;font-weight:800;text-transform:uppercase;letter-spacing:.04em;background:var(--tinta);color:#fff;padding:.25rem .6rem;border-radius:6px;margin:0 0 8px}
+.accion{display:flex;justify-content:space-between;align-items:center;margin-top:12px;background:var(--tinta);color:#fff;font-weight:800;font-size:1.05rem;border-radius:10px;padding:.75rem 1rem;min-height:48px}
+.accion::after{content:"→";font-size:1.3rem;line-height:1}
+.e-rojo{background:var(--rojo);color:#fff}.e-rojo .txt{color:#fff}
+.e-rojo .sello,.e-rojo .accion{background:#fff;color:var(--tinta)}
+.e1{background:var(--n-amarillo)}.e2{background:var(--n-verde)}.e3{background:var(--n-azul)}
+.simple{display:flex;justify-content:space-between;align-items:center;gap:12px;min-height:56px;padding:12px 16px}
+.simple b{font-size:1.12rem}
+.simple::after{content:"→";font-weight:800;font-size:1.3rem}
+.redes{list-style:none;display:grid;gap:10px}
+.redes a{display:flex;justify-content:space-between;align-items:center;gap:10px;min-height:52px;text-decoration:none;background:#fff;border:2px solid var(--tinta);border-radius:12px;padding:10px 14px;font-size:1rem}
+.redes a::after{content:"→";font-weight:800;font-size:1.2rem}
+.redes b{font-family:var(--f-t);font-size:1.08rem}
+.redes span{color:var(--suave);font-size:.95rem}
+.pie{max-width:520px;margin:16px auto 0;color:#e2efe7;font-size:.85rem;display:flex;flex-wrap:wrap;gap:10px;justify-content:space-between}
+.pie a{color:#fff}
+@media(prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+</head>
+<body>
+<div class="hoja">
+  <div class="anillas" aria-hidden="true"></div>
+  <main class="dentro">
+    <header class="yo">
+      <img src="assets/yo-busto.jpg" alt="Parrilla, con pasamontañas negro" width="464" height="520">
+      <div>
+        <h1>Parrilla</h1>
+        <p>Te ayudo a preparar tu oposición, con método y con IA.</p>
+      </div>
+    </header>
+
+    <h2 class="paso"><i>1</i>Todo para tu oposición, gratis</h2>
+    <ul class="lista">
+      <li><a class="enlace e2" data-ref href="https://coposita.es/">
+        <span class="sello">Gratis · sin cuenta</span>
+        <b>Coposita</b>
+        <span class="txt">Temario oficial en PDF, exámenes de otros años, planificador de estudio y prompts para estudiar con IA. Eliges tu oposición y lo tienes todo.</span>
+        <span class="accion">Entrar en Coposita</span></a></li>
+    </ul>
+
+    <h2 class="paso"><i>2</i>Tu tutor 24 horas</h2>
+    <ul class="lista">
+      <li><a class="enlace e3" data-ref href="https://coposita.es/asistente">
+        <span class="sello">Gratis para empezar</span>
+        <b>El tutor de Coposita</b>
+        <span class="txt">Le escribes como a un compañero: te pone test de tu temario, te hace esquemas y te organiza el plan hasta el examen.</span>
+        <span class="accion">Probar el tutor</span></a></li>
+    </ul>
+
+    <h2 class="paso"><i>3</i>Te preparo tu oposición</h2>
+    <ul class="lista">
+      <li><a class="enlace e-rojo" data-ref href="/">
+        <span class="sello">Hecho para ti</span>
+        <b>De 0 a 100, con mi método</b>
+        <span class="txt">Tu planning hasta el examen, los temas que más caen y todo el material, listo para descargar.</span>
+        <span class="accion">Ver qué incluye</span></a></li>
+    </ul>
+
+    <h2 class="paso"><i>4</i>Mis redes sociales</h2>
+    <ul class="redes">
+      <li><a href="https://www.tiktok.com/@parrilla_opos"><span><b>TikTok</b> · @parrilla_opos</span></a></li>
+      <li><a href="https://instagram.com/parrilla_opos"><span><b>Instagram</b> · @parrilla_opos</span></a></li>
+      <li><a href="https://www.facebook.com/profile.php?id=61596439931023"><span><b>Facebook</b> · Parrilla Opos</span></a></li>
+    </ul>
+  </main>
+</div>
+<footer class="pie">
+  <span>Parrilla · parrillaopos.es</span>
+  <span><a href="/aviso-legal">Aviso legal</a> · <a href="/privacidad">Privacidad</a></span>
+</footer>
+<script>
+// Origen de la visita (ref=tt|ig|web, contrato entre webs). Sin cookies ni almacenamiento.
+(function(){var r=(new URLSearchParams(location.search).get('ref')||'web').toLowerCase().replace(/[^a-z0-9_-]/g,'').slice(0,20)||'web';
+document.querySelectorAll('a[data-ref]').forEach(function(a){var u=new URL(a.getAttribute('href'),location.href);u.searchParams.set('ref',r);a.href=u.href;});})();
+</script>
+</body>
+</html>

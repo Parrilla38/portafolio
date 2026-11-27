@@ -269,7 +269,7 @@ details p{color:var(--suave);margin-top:.5rem}
         <span><b>2.000</b> cosas guardadas</span>
         <span>Recuerda <b>50</b> cosas de ti</span>
       </div>
-      <p class="ia__nota">Funciona en el móvil y en el ordenador. Más en <a href="https://coposita.es/asistente">coposita.es/asistente</a>.</p>
+      <p class="ia__nota">Funciona en el móvil y en el ordenador. Más en <a data-ref href="https://coposita.es/asistente">coposita.es/asistente</a>.</p>
     </section>
 
     <section class="bloque dos-columnas">
@@ -348,5 +348,10 @@ details p{color:var(--suave);margin-top:.5rem}
   <span>Parrilla · parrillaopos.es</span>
   <span><a href="aviso-legal.html">Aviso legal</a> · <a href="privacidad.html">Privacidad</a></span>
 </footer>
+<script>
+// Origen de la visita (ref=tt|ig|web, contrato entre webs). Sin cookies ni almacenamiento.
+(function(){var r=(new URLSearchParams(location.search).get('ref')||'web').toLowerCase().replace(/[^a-z0-9_-]/g,'').slice(0,20)||'web';
+document.querySelectorAll('a[data-ref]').forEach(function(a){var u=new URL(a.getAttribute('href'),location.href);u.searchParams.set('ref',r);a.href=u.href;});})();
+</script>
 </body>
 </html>
